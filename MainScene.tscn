@@ -1,0 +1,206 @@
+[gd_scene load_steps=17 format=3 uid="uid://2bopy5q17vt0"]
+
+[ext_resource type="Texture2D" uid="uid://cn0okid1rh8fj" path="res://graphics/tile_forest_atlas.png" id="1_gmiwb"]
+[ext_resource type="Texture2D" uid="uid://clbchorfe73cf" path="res://graphics/player_animation.png" id="2_2ehfg"]
+[ext_resource type="Script" path="res://Player.gd" id="3_8wutt"]
+[ext_resource type="Texture2D" uid="uid://conhviow12h36" path="res://graphics/joystick.png" id="4_esmm6"]
+[ext_resource type="Texture2D" uid="uid://cqoap30so5ykd" path="res://graphics/joystick_1.png" id="5_abf5x"]
+[ext_resource type="Script" path="res://Joystick.gd" id="6_8ylqw"]
+[ext_resource type="Script" path="res://WorldGenerator.gd" id="7_sktgp"]
+
+[sub_resource type="Animation" id="Animation_0ia1r"]
+resource_name = "idleDown"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_ne4qq"]
+resource_name = "idleSide"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_fuxjb"]
+resource_name = "idleUp"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_s75hl"]
+resource_name = "runningDown"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_sbcrl"]
+resource_name = "runningSide"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 3]
+}
+
+[sub_resource type="Animation" id="Animation_s2o8c"]
+resource_name = "runningUp"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pdvr0"]
+_data = {
+"idleDown": SubResource("Animation_0ia1r"),
+"idleSide": SubResource("Animation_ne4qq"),
+"idleUp": SubResource("Animation_fuxjb"),
+"runningDown": SubResource("Animation_s75hl"),
+"runningSide": SubResource("Animation_sbcrl"),
+"runningUp": SubResource("Animation_s2o8c")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dh31l"]
+texture = ExtResource("1_gmiwb")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mirr4"]
+sources/0 = SubResource("TileSetAtlasSource_dh31l")
+
+[node name="MainScene" type="Node2D"]
+scale = Vector2(5, 5)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+z_index = 10
+position = Vector2(121, 74.4)
+script = ExtResource("3_8wutt")
+
+[node name="Player" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, 1)
+texture = ExtResource("2_2ehfg")
+hframes = 13
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/Player"]
+autoplay = "idleDown"
+libraries = {
+"": SubResource("AnimationLibrary_pdvr0")
+}
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 3.629
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -688.0
+offset_right = 40.0
+offset_bottom = -648.0
+grow_vertical = 0
+scale = Vector2(5, 5)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="JoystickMovement" type="Sprite2D" parent="CanvasLayer/Control/Panel"]
+position = Vector2(25.2, 111.6)
+texture = ExtResource("4_esmm6")
+
+[node name="Joystick1" type="Sprite2D" parent="CanvasLayer/Control/Panel/JoystickMovement"]
+unique_name_in_owner = true
+texture = ExtResource("5_abf5x")
+script = ExtResource("6_8ylqw")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Node2D"]
+tile_set = SubResource("TileSet_mirr4")
+cell_quadrant_size = 32
+format = 2
+script = ExtResource("7_sktgp")
