@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://doy2t6n1asrsk"]
+
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_lkpxf"]
+[ext_resource type="Texture2D" uid="uid://d0hoen4x53wyp" path="res://graphics/magicBullet.png" id="2_jw25u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_025nx"]
+size = Vector2(40, 20)
+
+[node name="MagicBullet" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_lkpxf")
+
+[node name="CharacterBody2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jw25u")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.78814e-06, 4.76837e-07)
+shape = SubResource("RectangleShape2D_025nx")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

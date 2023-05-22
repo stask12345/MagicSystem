@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var joystick = %Joystick1
+@onready var joystick = %Joystick
 var speed = 100000
 var previousMotion = Vector2(0,0) #dla animatePlayer
 

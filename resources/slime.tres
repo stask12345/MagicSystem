@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c6cfoc52i4ik0"]
+
+[ext_resource type="Script" path="res://scripts/monsterStats.gd" id="1_n2lu5"]
+
+[resource]
+script = ExtResource("1_n2lu5")
+hp = 20
