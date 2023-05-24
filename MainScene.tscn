@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cpef4ue6v2ma0"]
+[gd_scene load_steps=23 format=3 uid="uid://cpef4ue6v2ma0"]
 
 [ext_resource type="Texture2D" uid="uid://cn0okid1rh8fj" path="res://graphics/tile_forest_atlas.png" id="1_gmiwb"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/WorldGenerator.gd" id="7_ewr5t"]
 [ext_resource type="Texture2D" uid="uid://cdr6t44v3wafl" path="res://graphics/joystick_2.png" id="7_x3nb3"]
 [ext_resource type="Script" path="res://scripts/JoystickAttack.gd" id="9_ldwna"]
+[ext_resource type="Texture2D" uid="uid://by1asfqpcjeh2" path="res://graphics/hpBar.png" id="10_ih8h8"]
 [ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/GreenSlime.tscn" id="12_8rhbl"]
 
 [sub_resource type="Animation" id="Animation_0ia1r"]
@@ -242,6 +243,18 @@ texture = ExtResource("7_x3nb3")
 script = ExtResource("9_ldwna")
 
 [node name="JoystickCenter" type="Marker2D" parent="CanvasLayer/RigthBottom/Panel/JoystickAttack"]
+
+[node name="LeftTop" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HpBar" type="Sprite2D" parent="CanvasLayer/LeftTop"]
+position = Vector2(115, 30)
+texture = ExtResource("10_ih8h8")
 
 [node name="Node2D" type="Node2D" parent="."]
 

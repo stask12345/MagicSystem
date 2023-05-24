@@ -3,15 +3,17 @@ extends Node2D
 @onready var joystickAttack = %JoystickAttack
 @onready var mainScene = get_node("/root/MainScene")
 var canShoot = true
+var wepon
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	rotation_degrees = joystickAttack.get_value_rotation()
 	if joystickAttack.get_value() && canShoot:
-		canShoot = false
-		shoot()
-		print("shoot")
-		waitForShoot()
+		if get_child_count() > 0:
+			wepon = get_child(0)
+			canShoot = false
+			shoot()
+			waitForShoot()
 
 func shoot():
 	var b = preload("res://objects/MagicBullet.tscn").instantiate()
