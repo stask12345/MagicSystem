@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cpef4ue6v2ma0"]
+[gd_scene load_steps=31 format=3 uid="uid://cpef4ue6v2ma0"]
 
 [ext_resource type="Texture2D" uid="uid://cn0okid1rh8fj" path="res://graphics/tile_forest_atlas.png" id="1_gmiwb"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://scripts/JoystickAttack.gd" id="9_ldwna"]
 [ext_resource type="Texture2D" uid="uid://by1asfqpcjeh2" path="res://graphics/hpBar.png" id="10_ih8h8"]
 [ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/GreenSlime.tscn" id="12_8rhbl"]
+[ext_resource type="Shader" path="res://resources/Water.gdshader" id="14_1lug6"]
+[ext_resource type="Texture2D" uid="uid://uetlvtg7u1qb" path="res://icon.svg" id="14_kdd8s"]
+[ext_resource type="Texture2D" uid="uid://cfirth5c3c3x1" path="res://water.png" id="16_u6j3e"]
 
 [sub_resource type="Animation" id="Animation_0ia1r"]
 resource_name = "idleDown"
@@ -151,6 +154,59 @@ texture = ExtResource("1_gmiwb")
 [sub_resource type="TileSet" id="TileSet_mirr4"]
 sources/0 = SubResource("TileSetAtlasSource_dh31l")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f30bs"]
+resource_local_to_scene = true
+shader = ExtResource("14_1lug6")
+shader_parameter/amplitude = 0.1
+shader_parameter/frequency = 2.0
+shader_parameter/speed = Vector2(0.4, 0)
+shader_parameter/transform = Basis(100, 10, 0, 0, 1, 0, 0, 0, 1)
+shader_parameter/texture = ExtResource("14_kdd8s")
+
+[sub_resource type="Animation" id="Animation_c4i47"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/disorientation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, -0.1]
+}
+
+[sub_resource type="Animation" id="Animation_wxkif"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/disorientation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, -0.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ai8af"]
+_data = {
+"RESET": SubResource("Animation_c4i47"),
+"idle": SubResource("Animation_wxkif")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_saguh"]
+shader = ExtResource("14_1lug6")
+shader_parameter/amplitude = 0.1
+shader_parameter/frequency = 2.0
+shader_parameter/speed = Vector2(0.5, 0.5)
+shader_parameter/transform = Basis(10, 5, 0, 0, 1, 0, 0, 0, 1)
+shader_parameter/texture = ExtResource("16_u6j3e")
+
 [node name="MainScene" type="Node2D"]
 scale = Vector2(5, 5)
 
@@ -256,9 +312,7 @@ size_flags_vertical = 0
 position = Vector2(115, 30)
 texture = ExtResource("10_ih8h8")
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="TileMap" type="TileMap" parent="Node2D"]
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mirr4")
 cell_quadrant_size = 32
 format = 2
@@ -276,3 +330,43 @@ position = Vector2(252.2, 98)
 
 [node name="GreenSlime4" parent="." instance=ExtResource("12_8rhbl")]
 position = Vector2(261.2, 189)
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_repeat = 3
+material = SubResource("ShaderMaterial_f30bs")
+position = Vector2(44.9, 180.2)
+scale = Vector2(0.810937, 0.990625)
+texture = ExtResource("14_kdd8s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_ai8af")
+}
+
+[node name="Water" type="Sprite2D" parent="."]
+z_index = -10
+texture_repeat = 2
+material = SubResource("ShaderMaterial_saguh")
+position = Vector2(156.4, 60.8)
+texture = ExtResource("16_u6j3e")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 200)
+
+[node name="Water2" type="Sprite2D" parent="."]
+z_index = -10
+texture_repeat = 2
+material = SubResource("ShaderMaterial_saguh")
+position = Vector2(156.4, 60.8)
+texture = ExtResource("16_u6j3e")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 200)
+
+[node name="Water3" type="Sprite2D" parent="."]
+z_index = -10
+texture_repeat = 2
+material = SubResource("ShaderMaterial_saguh")
+position = Vector2(300, 60.8)
+texture = ExtResource("16_u6j3e")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 200)

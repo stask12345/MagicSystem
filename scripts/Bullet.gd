@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Bullet
 
 @export var damage = 10
-@export var range = 1
+@export var bulletRange = 1
 @export var speed = 1000
 var destroyed = false
 
@@ -17,7 +17,7 @@ func _process(_delta): #unikalne dla każdego pocisku
 		$AnimationPlayer.play("destroyAnimation")
 
 func timerToDestroy():
-	await get_tree().create_timer(range).timeout
+	await get_tree().create_timer(bulletRange).timeout
 	queue_free()
 
 
