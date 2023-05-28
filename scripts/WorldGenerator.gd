@@ -3,9 +3,9 @@ extends TileMap
 var maxLenght = 20
 var maxWidth = 20
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	generateGrassland() # Replace with function body.
+	#generateGrassland() 
+	pass
 
 func generateGrassland():
 	for w in maxWidth:
