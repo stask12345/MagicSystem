@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cpef4ue6v2ma0"]
+[gd_scene load_steps=30 format=3 uid="uid://cpef4ue6v2ma0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
 [ext_resource type="Texture2D" uid="uid://clbchorfe73cf" path="res://graphics/player_animation.png" id="2_2ehfg"]
@@ -213,12 +213,7 @@ sources/0 = SubResource("TileSetAtlasSource_dh31l")
 sources/1 = SubResource("TileSetAtlasSource_i013q")
 sources/2 = SubResource("TileSetAtlasSource_3m0e3")
 
-[sub_resource type="Resource" id="Resource_75v51"]
-resource_local_to_scene = true
-script = ExtResource("16_jlvpt")
-hp = 30
-
-[sub_resource type="Resource" id="Resource_3j87c"]
+[sub_resource type="Resource" id="Resource_p6f2r"]
 resource_local_to_scene = true
 script = ExtResource("16_jlvpt")
 hp = 30
@@ -252,6 +247,8 @@ scale = Vector2(0.667, 0.5)
 texture = ExtResource("5_abf5x")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [node name="WeponHolder" type="Node2D" parent="Player"]
 script = ExtResource("3_mpctm")
@@ -349,10 +346,6 @@ layer_1/z_index = 100
 layer_1/tile_data = PackedInt32Array(65543, 524288, 0, 131079, 458752, 1, 131080, 524288, 0, 196616, 524288, 1, 10, 524288, 0, 65546, 524288, 1, 131084, 524288, 0, 196620, 524288, 1, 262147, 524288, 0, 327683, 458752, 1, 196610, 524288, 0, 262146, 524288, 1, 131081, 196609, 1, 14, 524288, 0, 65550, 524288, 1, 8, 524288, 0, 65544, 524288, 1, 327682, 524288, 0, 393218, 524288, 1, 393236, 524288, 0, 458772, 524288, 1, 262162, 524288, 0, 327698, 458752, 1, 131092, 524288, 0, 196628, 524288, 1, 262145, 524288, 0, 327681, 524288, 1, 65536, 524288, 0, 131072, 524288, 1, 720907, 589824, 1, 262153, 655360, 0, 720904, 786432, 1, 524304, 589824, 0, 458770, 851968, 0, 131082, 720896, 0, 524300, 655360, 1)
 script = ExtResource("7_ewr5t")
 
-[node name="GreenSlime" parent="." instance=ExtResource("12_8rhbl")]
-position = Vector2(57.8, 80.4)
-stats = SubResource("Resource_75v51")
-
 [node name="Water" parent="." instance=ExtResource("16_vveis")]
 visible = true
 position = Vector2(250, 170.6)
@@ -361,4 +354,4 @@ region_rect = Rect2(0, 0, 100, 100)
 
 [node name="GreenSlime2" parent="." instance=ExtResource("12_8rhbl")]
 position = Vector2(118.6, 144)
-stats = SubResource("Resource_3j87c")
+stats = SubResource("Resource_p6f2r")
