@@ -62,8 +62,14 @@ position = Vector2(-1.90735e-06, -25)
 scale = Vector2(50, 10)
 texture = ExtResource("5_qr0yg")
 
+[node name="HealthWhite" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(1, 0.996078, 0.992157, 1)
+position = Vector2(3.8147e-06, -25)
+scale = Vector2(46, 8)
+texture = ExtResource("5_qr0yg")
+
 [node name="Health" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0.698039, 0, 0, 1)
-position = Vector2(4.76837e-07, -25)
+position = Vector2(0, -25)
 scale = Vector2(46, 8)
 texture = ExtResource("5_qr0yg")

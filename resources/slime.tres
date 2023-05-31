@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://scripts/monsterStats.gd" id="1_n2lu5"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_n2lu5")
-hp = 20
+hp = 30

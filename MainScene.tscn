@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cpef4ue6v2ma0"]
+[gd_scene load_steps=31 format=3 uid="uid://cpef4ue6v2ma0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
 [ext_resource type="Texture2D" uid="uid://clbchorfe73cf" path="res://graphics/player_animation.png" id="2_2ehfg"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/GreenSlime.tscn" id="12_8rhbl"]
 [ext_resource type="Texture2D" uid="uid://v2al3y5d1k3w" path="res://graphics/tile_forest_decorations.png" id="12_28axy"]
 [ext_resource type="Texture2D" uid="uid://og26vye33gy3" path="res://graphics/tile_forest_water_pond.png" id="13_awxbb"]
+[ext_resource type="Script" path="res://scripts/monsterStats.gd" id="16_jlvpt"]
 [ext_resource type="PackedScene" uid="uid://sq60i2cti5ii" path="res://objects/Water.tscn" id="16_vveis"]
 
 [sub_resource type="Animation" id="Animation_0ia1r"]
@@ -212,6 +213,16 @@ sources/0 = SubResource("TileSetAtlasSource_dh31l")
 sources/1 = SubResource("TileSetAtlasSource_i013q")
 sources/2 = SubResource("TileSetAtlasSource_3m0e3")
 
+[sub_resource type="Resource" id="Resource_75v51"]
+resource_local_to_scene = true
+script = ExtResource("16_jlvpt")
+hp = 30
+
+[sub_resource type="Resource" id="Resource_3j87c"]
+resource_local_to_scene = true
+script = ExtResource("16_jlvpt")
+hp = 30
+
 [node name="MainScene" type="Node2D"]
 scale = Vector2(5, 5)
 
@@ -340,12 +351,14 @@ script = ExtResource("7_ewr5t")
 
 [node name="GreenSlime" parent="." instance=ExtResource("12_8rhbl")]
 position = Vector2(57.8, 80.4)
-
-[node name="GreenSlime2" parent="." instance=ExtResource("12_8rhbl")]
-position = Vector2(124, 122.6)
+stats = SubResource("Resource_75v51")
 
 [node name="Water" parent="." instance=ExtResource("16_vveis")]
 visible = true
 position = Vector2(250, 170.6)
 scale = Vector2(1, 1)
 region_rect = Rect2(0, 0, 100, 100)
+
+[node name="GreenSlime2" parent="." instance=ExtResource("12_8rhbl")]
+position = Vector2(118.6, 144)
+stats = SubResource("Resource_3j87c")
