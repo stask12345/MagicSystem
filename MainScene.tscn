@@ -1,16 +1,17 @@
-[gd_scene load_steps=30 format=3 uid="uid://cpef4ue6v2ma0"]
+[gd_scene load_steps=32 format=3 uid="uid://cpef4ue6v2ma0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
 [ext_resource type="Texture2D" uid="uid://clbchorfe73cf" path="res://graphics/player_animation.png" id="2_2ehfg"]
 [ext_resource type="Texture2D" uid="uid://nnh0igwdve0u" path="res://graphics/wand1.png" id="3_keh4t"]
 [ext_resource type="Script" path="res://scripts/WeponHolder.gd" id="3_mpctm"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="4_baa2v"]
 [ext_resource type="Texture2D" uid="uid://conhviow12h36" path="res://graphics/joystick.png" id="4_esmm6"]
 [ext_resource type="Script" path="res://scripts/Joystick.gd" id="5_2bnxb"]
 [ext_resource type="Texture2D" uid="uid://cqoap30so5ykd" path="res://graphics/joystick_1.png" id="5_abf5x"]
 [ext_resource type="Script" path="res://scripts/WorldGenerator.gd" id="7_ewr5t"]
+[ext_resource type="Texture2D" uid="uid://b68mlcifwrs7r" path="res://graphics/blast.png" id="7_jpyjm"]
 [ext_resource type="Texture2D" uid="uid://cdr6t44v3wafl" path="res://graphics/joystick_2.png" id="7_x3nb3"]
 [ext_resource type="Script" path="res://scripts/JoystickAttack.gd" id="9_ldwna"]
-[ext_resource type="Texture2D" uid="uid://by1asfqpcjeh2" path="res://graphics/hpBar.png" id="10_ih8h8"]
 [ext_resource type="Texture2D" uid="uid://by6fx5r51noyc" path="res://graphics/tile_forest_ground.png" id="11_cvtjd"]
 [ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/GreenSlime.tscn" id="12_8rhbl"]
 [ext_resource type="Texture2D" uid="uid://v2al3y5d1k3w" path="res://graphics/tile_forest_decorations.png" id="12_28axy"]
@@ -141,6 +142,9 @@ _data = {
 "runningUp": SubResource("Animation_s2o8c")
 }
 
+[sub_resource type="Gradient" id="Gradient_2qfkn"]
+colors = PackedColorArray(0.388235, 0.607843, 1, 0.403922, 0.517647, 1, 1, 0.45098)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dh31l"]
 texture = ExtResource("11_cvtjd")
 0:0/0 = 0
@@ -213,7 +217,7 @@ sources/0 = SubResource("TileSetAtlasSource_dh31l")
 sources/1 = SubResource("TileSetAtlasSource_i013q")
 sources/2 = SubResource("TileSetAtlasSource_3m0e3")
 
-[sub_resource type="Resource" id="Resource_p6f2r"]
+[sub_resource type="Resource" id="Resource_bmdf1"]
 resource_local_to_scene = true
 script = ExtResource("16_jlvpt")
 hp = 30
@@ -224,7 +228,7 @@ scale = Vector2(5, 5)
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
 z_index = 10
-position = Vector2(121, 74.4)
+position = Vector2(105.4, -24.2)
 script = ExtResource("1_k712e")
 
 [node name="Player" type="Sprite2D" parent="Player"]
@@ -246,9 +250,11 @@ position = Vector2(-1.52588e-05, 7.99999)
 scale = Vector2(0.667, 0.5)
 texture = ExtResource("5_abf5x")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="Player"]
+unique_name_in_owner = true
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
+script = ExtResource("4_baa2v")
 
 [node name="WeponHolder" type="Node2D" parent="Player"]
 script = ExtResource("3_mpctm")
@@ -257,6 +263,22 @@ script = ExtResource("3_mpctm")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_keh4t")
 offset = Vector2(40, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player/WeponHolder/Wand1"]
+position = Vector2(61, 0)
+emitting = false
+amount = 2
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("7_jpyjm")
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_2qfkn")
+hue_variation_min = -0.2
+hue_variation_max = 0.56
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 3.629
@@ -328,10 +350,6 @@ offset_bottom = 40.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="HpBar" type="Sprite2D" parent="CanvasLayer/LeftTop"]
-position = Vector2(115, 30)
-texture = ExtResource("10_ih8h8")
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mirr4")
 cell_quadrant_size = 32
@@ -354,4 +372,4 @@ region_rect = Rect2(0, 0, 100, 100)
 
 [node name="GreenSlime2" parent="." instance=ExtResource("12_8rhbl")]
 position = Vector2(118.6, 144)
-stats = SubResource("Resource_p6f2r")
+stats = SubResource("Resource_bmdf1")

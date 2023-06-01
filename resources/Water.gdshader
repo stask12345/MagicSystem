@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
-uniform float amplitude = 0.1;
-uniform float frequency = 10.0;
-uniform vec2 speed = vec2(0.5, 0.5);
+uniform float amplitude = 0.2;
+uniform float frequency = 12.0;
+uniform vec2 speed = vec2(0.7, 0.7);
 uniform sampler2D texture;
 uniform mat3 transform;
 
