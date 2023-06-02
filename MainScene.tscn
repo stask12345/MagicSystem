@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://cpef4ue6v2ma0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
-[ext_resource type="Texture2D" uid="uid://clbchorfe73cf" path="res://graphics/player_animation.png" id="2_2ehfg"]
+[ext_resource type="Texture2D" uid="uid://dgbk8rox76sb1" path="res://graphics/player_animation1.png" id="2_4se52"]
 [ext_resource type="Texture2D" uid="uid://nnh0igwdve0u" path="res://graphics/wand1.png" id="3_keh4t"]
 [ext_resource type="Script" path="res://scripts/WeponHolder.gd" id="3_mpctm"]
 [ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="4_baa2v"]
@@ -217,7 +217,7 @@ sources/0 = SubResource("TileSetAtlasSource_dh31l")
 sources/1 = SubResource("TileSetAtlasSource_i013q")
 sources/2 = SubResource("TileSetAtlasSource_3m0e3")
 
-[sub_resource type="Resource" id="Resource_bmdf1"]
+[sub_resource type="Resource" id="Resource_5c8t8"]
 resource_local_to_scene = true
 script = ExtResource("16_jlvpt")
 hp = 30
@@ -233,7 +233,7 @@ script = ExtResource("1_k712e")
 
 [node name="Player" type="Sprite2D" parent="Player"]
 position = Vector2(0, 1)
-texture = ExtResource("2_2ehfg")
+texture = ExtResource("2_4se52")
 hframes = 13
 frame = 5
 
@@ -372,4 +372,4 @@ region_rect = Rect2(0, 0, 100, 100)
 
 [node name="GreenSlime2" parent="." instance=ExtResource("12_8rhbl")]
 position = Vector2(118.6, 144)
-stats = SubResource("Resource_bmdf1")
+stats = SubResource("Resource_5c8t8")
