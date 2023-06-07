@@ -1,23 +1,22 @@
 shader_type canvas_item;
+render_mode unshaded;
 
-uniform float amplitude = 0.2;
-uniform float frequency = 12.0;
-uniform vec2 speed = vec2(0.7, 0.7);
-uniform sampler2D texture;
-uniform mat3 transform;
+uniform float tile_factor = 10.0;
+uniform float aspect_ratio = 0.5;
+
+uniform vec2 time_factor = vec2(2.0, 3.0);
+uniform vec2 offset_factor = vec2(5.0, 2.0);
+uniform vec2 amplitude = vec2(0.05, 0.05);
 
 void fragment() {
-    vec2 uv = UV;
-    
-    // Transform the UV coordinates to screen space
-    vec2 screen_uv = (vec3(uv, 1.0) * transform).xy;
-    
-    // Apply the distortion effect
-    screen_uv += sin((screen_uv.y * frequency + TIME) * speed) * amplitude;
-    
-    // Transform the distorted screen UV coordinates back to object's local space
-    vec2 distorted_uv = (vec3(screen_uv, 1.0) * inverse(transform)).xy;
-    
-    // Get the color from the original texture
-    COLOR = texture(TEXTURE, distorted_uv);
+	vec2 tiled_uvs = UV * tile_factor;
+	tiled_uvs.y *= aspect_ratio;
+	
+	vec2 wave_uv_offset;
+	wave_uv_offset.x += sin(TIME * time_factor.x + (tiled_uvs.x + tiled_uvs.y) * offset_factor.x);
+	wave_uv_offset.y += cos(TIME * time_factor.y + (tiled_uvs.x + tiled_uvs.y) * offset_factor.y);
+	
+
+	COLOR = texture(TEXTURE, tiled_uvs + wave_uv_offset * amplitude);
+
 }

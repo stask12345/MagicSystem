@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl221p6pj5gu0"]
+
+[ext_resource type="Texture2D" uid="uid://cqoap30so5ykd" path="res://graphics/joystick_1.png" id="1_t7in1"]
+[ext_resource type="Script" path="res://scripts/Joystick.gd" id="2_hg0og"]
+
+[node name="Joystick" type="Sprite2D"]
+texture = ExtResource("1_t7in1")
+script = ExtResource("2_hg0og")

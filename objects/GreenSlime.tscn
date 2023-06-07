@@ -1,11 +1,66 @@
-[gd_scene load_steps=10 format=3 uid="uid://djbafi8x6va0u"]
+[gd_scene load_steps=13 format=3 uid="uid://djbafi8x6va0u"]
 
-[ext_resource type="Texture2D" uid="uid://bopetw2gpk8wd" path="res://graphics/monster1.png" id="1_21aq8"]
-[ext_resource type="Script" path="res://scripts/SlimeMonster.gd" id="2_u07gx"]
-[ext_resource type="Resource" uid="uid://c6cfoc52i4ik0" path="res://resources/slime.tres" id="3_cunye"]
-[ext_resource type="Texture2D" uid="uid://bclaj4vgvdt5o" path="res://graphics/monster2.png" id="4_tcpb3"]
-[ext_resource type="Script" path="res://scripts/HPBar.gd" id="5_giwjj"]
-[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="5_qr0yg"]
+[ext_resource type="Texture2D" uid="uid://bopetw2gpk8wd" path="res://graphics/monster1.png" id="1_f36tg"]
+[ext_resource type="Script" path="res://scripts/SlimeMonster.gd" id="2_y0jol"]
+[ext_resource type="Resource" uid="uid://c6cfoc52i4ik0" path="res://resources/slime.tres" id="3_c7qlq"]
+[ext_resource type="Texture2D" uid="uid://bclaj4vgvdt5o" path="res://graphics/monster2.png" id="4_2hlm4"]
+[ext_resource type="Script" path="res://scripts/HPBar.gd" id="5_aucnh"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="6_cyc4a"]
+[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/smallExplosion.tres" id="7_w8g4h"]
+
+[sub_resource type="Animation" id="Animation_pbd6j"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HPBar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_kxduq"]
 resource_name = "idle"
@@ -20,22 +75,28 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("1_21aq8"), ExtResource("4_tcpb3")]
+"values": [ExtResource("1_f36tg"), ExtResource("4_2hlm4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wsduy"]
 _data = {
+"death": SubResource("Animation_pbd6j"),
 "idle": SubResource("Animation_kxduq")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xkjw"]
 size = Vector2(10.6, 6.6)
 
+[sub_resource type="Gradient" id="Gradient_o0vcl"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0993377, 0.688742, 1)
+colors = PackedColorArray(1, 1, 1, 0.211765, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.270588)
+
 [node name="GreenSlime" type="Sprite2D"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_21aq8")
-script = ExtResource("2_u07gx")
-stats = ExtResource("3_cunye")
+texture = ExtResource("1_f36tg")
+script = ExtResource("2_y0jol")
+stats = ExtResource("3_c7qlq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -53,23 +114,41 @@ position = Vector2(80.1, 82.3)
 shape = SubResource("RectangleShape2D_4xkjw")
 
 [node name="HPBar" type="Node2D" parent="."]
-script = ExtResource("5_giwjj")
+script = ExtResource("5_aucnh")
 barScale = 1.5
 
 [node name="Background" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-1.90735e-06, -25)
 scale = Vector2(50, 10)
-texture = ExtResource("5_qr0yg")
+texture = ExtResource("6_cyc4a")
 
 [node name="HealthWhite" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(1, 0.996078, 0.992157, 1)
 position = Vector2(3.8147e-06, -25)
 scale = Vector2(46, 8)
-texture = ExtResource("5_qr0yg")
+texture = ExtResource("6_cyc4a")
 
 [node name="Health" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0.698039, 0, 0, 1)
 position = Vector2(0, -25)
 scale = Vector2(46, 8)
-texture = ExtResource("5_qr0yg")
+texture = ExtResource("6_cyc4a")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+fixed_fps = 60
+fract_delta = false
+texture = ExtResource("7_w8g4h")
+emission_shape = 1
+emission_sphere_radius = 67.32
+gravity = Vector2(0, -10)
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_o0vcl")
+anim_speed_max = 2.0

@@ -10,7 +10,7 @@ func reciveDamage(damage):
 	hpBar.updateHealthBar(stats.hp, maxHp)
 	reciveDamageAnimation()
 	if stats.hp <= 0:
-		queue_free()
+		$AnimationPlayer.play("death")
 
 func reciveDamageAnimation():
 	var t = get_tree().create_tween()

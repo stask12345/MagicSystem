@@ -1,23 +1,23 @@
-[gd_scene load_steps=32 format=3 uid="uid://cpef4ue6v2ma0"]
+[gd_scene load_steps=34 format=3 uid="uid://cpef4ue6v2ma0"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_k712e"]
-[ext_resource type="Texture2D" uid="uid://dgbk8rox76sb1" path="res://graphics/player_animation1.png" id="2_4se52"]
-[ext_resource type="Texture2D" uid="uid://nnh0igwdve0u" path="res://graphics/wand1.png" id="3_keh4t"]
-[ext_resource type="Script" path="res://scripts/WeponHolder.gd" id="3_mpctm"]
-[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="4_baa2v"]
-[ext_resource type="Texture2D" uid="uid://conhviow12h36" path="res://graphics/joystick.png" id="4_esmm6"]
-[ext_resource type="Script" path="res://scripts/Joystick.gd" id="5_2bnxb"]
-[ext_resource type="Texture2D" uid="uid://cqoap30so5ykd" path="res://graphics/joystick_1.png" id="5_abf5x"]
-[ext_resource type="Script" path="res://scripts/WorldGenerator.gd" id="7_ewr5t"]
-[ext_resource type="Texture2D" uid="uid://b68mlcifwrs7r" path="res://graphics/blast.png" id="7_jpyjm"]
-[ext_resource type="Texture2D" uid="uid://cdr6t44v3wafl" path="res://graphics/joystick_2.png" id="7_x3nb3"]
-[ext_resource type="Script" path="res://scripts/JoystickAttack.gd" id="9_ldwna"]
-[ext_resource type="Texture2D" uid="uid://by6fx5r51noyc" path="res://graphics/tile_forest_ground.png" id="11_cvtjd"]
-[ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/GreenSlime.tscn" id="12_8rhbl"]
-[ext_resource type="Texture2D" uid="uid://v2al3y5d1k3w" path="res://graphics/tile_forest_decorations.png" id="12_28axy"]
-[ext_resource type="Texture2D" uid="uid://og26vye33gy3" path="res://graphics/tile_forest_water_pond.png" id="13_awxbb"]
-[ext_resource type="Script" path="res://scripts/monsterStats.gd" id="16_jlvpt"]
-[ext_resource type="PackedScene" uid="uid://sq60i2cti5ii" path="res://objects/Water.tscn" id="16_vveis"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_fe1m1"]
+[ext_resource type="Texture2D" uid="uid://dgbk8rox76sb1" path="res://graphics/player_animation1.png" id="2_f0xa3"]
+[ext_resource type="Texture2D" uid="uid://cqoap30so5ykd" path="res://graphics/joystick_1.png" id="3_palot"]
+[ext_resource type="Script" path="res://scripts/PlayerCamera.gd" id="4_8hxsa"]
+[ext_resource type="Script" path="res://scripts/WeponHolder.gd" id="5_p7twa"]
+[ext_resource type="Texture2D" uid="uid://nnh0igwdve0u" path="res://graphics/wand1.png" id="6_y10kt"]
+[ext_resource type="Texture2D" uid="uid://b68mlcifwrs7r" path="res://graphics/blast.png" id="7_y4ivl"]
+[ext_resource type="Texture2D" uid="uid://conhviow12h36" path="res://graphics/joystick.png" id="8_md755"]
+[ext_resource type="Script" path="res://scripts/Joystick.gd" id="9_8ux4y"]
+[ext_resource type="Texture2D" uid="uid://cdr6t44v3wafl" path="res://graphics/joystick_2.png" id="10_6cd3x"]
+[ext_resource type="Script" path="res://scripts/JoystickAttack.gd" id="11_f30vv"]
+[ext_resource type="Texture2D" uid="uid://by6fx5r51noyc" path="res://graphics/tile_forest_ground.png" id="12_odbje"]
+[ext_resource type="Texture2D" uid="uid://v2al3y5d1k3w" path="res://graphics/tile_forest_decorations.png" id="13_5gp0d"]
+[ext_resource type="Texture2D" uid="uid://og26vye33gy3" path="res://graphics/tile_forest_water_pond.png" id="14_xl1tk"]
+[ext_resource type="Script" path="res://scripts/WorldGenerator.gd" id="15_ihfir"]
+[ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/GreenSlime.tscn" id="16_cd5iw"]
+[ext_resource type="Script" path="res://scripts/monsterStats.gd" id="17_v40qr"]
+[ext_resource type="PackedScene" uid="uid://lnn64m3ggtke" path="res://objects/Water.tscn" id="18_yiwn8"]
 
 [sub_resource type="Animation" id="Animation_0ia1r"]
 resource_name = "idleDown"
@@ -146,7 +146,7 @@ _data = {
 colors = PackedColorArray(0.388235, 0.607843, 1, 0.403922, 0.517647, 1, 1, 0.45098)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dh31l"]
-texture = ExtResource("11_cvtjd")
+texture = ExtResource("12_odbje")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -177,7 +177,7 @@ texture = ExtResource("11_cvtjd")
 13:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i013q"]
-texture = ExtResource("12_28axy")
+texture = ExtResource("13_5gp0d")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -194,7 +194,7 @@ texture = ExtResource("12_28axy")
 6:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3m0e3"]
-texture = ExtResource("13_awxbb")
+texture = ExtResource("14_xl1tk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -217,23 +217,34 @@ sources/0 = SubResource("TileSetAtlasSource_dh31l")
 sources/1 = SubResource("TileSetAtlasSource_i013q")
 sources/2 = SubResource("TileSetAtlasSource_3m0e3")
 
-[sub_resource type="Resource" id="Resource_5c8t8"]
+[sub_resource type="Resource" id="Resource_rc25h"]
 resource_local_to_scene = true
-script = ExtResource("16_jlvpt")
+script = ExtResource("17_v40qr")
+hp = 30
+
+[sub_resource type="Resource" id="Resource_j46br"]
+resource_local_to_scene = true
+script = ExtResource("17_v40qr")
+hp = 30
+
+[sub_resource type="Resource" id="Resource_2f32x"]
+resource_local_to_scene = true
+script = ExtResource("17_v40qr")
 hp = 30
 
 [node name="MainScene" type="Node2D"]
+position = Vector2(-8, -4)
 scale = Vector2(5, 5)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
 z_index = 10
-position = Vector2(105.4, -24.2)
-script = ExtResource("1_k712e")
+position = Vector2(72, 35.4)
+script = ExtResource("1_fe1m1")
 
 [node name="Player" type="Sprite2D" parent="Player"]
 position = Vector2(0, 1)
-texture = ExtResource("2_4se52")
+texture = ExtResource("2_f0xa3")
 hframes = 13
 frame = 5
 
@@ -248,20 +259,20 @@ self_modulate = Color(0, 0, 0, 0.372549)
 z_index = -1
 position = Vector2(-1.52588e-05, 7.99999)
 scale = Vector2(0.667, 0.5)
-texture = ExtResource("5_abf5x")
+texture = ExtResource("3_palot")
 
 [node name="Camera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
-script = ExtResource("4_baa2v")
+script = ExtResource("4_8hxsa")
 
 [node name="WeponHolder" type="Node2D" parent="Player"]
-script = ExtResource("3_mpctm")
+script = ExtResource("5_p7twa")
 
 [node name="Wand1" type="Sprite2D" parent="Player/WeponHolder"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_keh4t")
+texture = ExtResource("6_y10kt")
 offset = Vector2(40, 0)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Player/WeponHolder/Wand1"]
@@ -272,7 +283,7 @@ lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
 local_coords = true
-texture = ExtResource("7_jpyjm")
+texture = ExtResource("7_y4ivl")
 gravity = Vector2(0, 0)
 scale_amount_min = 4.0
 scale_amount_max = 4.0
@@ -303,12 +314,12 @@ offset_bottom = 40.0
 
 [node name="JoystickMovement" type="Sprite2D" parent="CanvasLayer/LeftBottom/Panel"]
 position = Vector2(25.2, 111.6)
-texture = ExtResource("4_esmm6")
+texture = ExtResource("8_md755")
 
 [node name="Joystick" type="Sprite2D" parent="CanvasLayer/LeftBottom/Panel/JoystickMovement"]
 unique_name_in_owner = true
-texture = ExtResource("5_abf5x")
-script = ExtResource("5_2bnxb")
+texture = ExtResource("3_palot")
+script = ExtResource("9_8ux4y")
 
 [node name="RigthBottom" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -331,14 +342,14 @@ offset_bottom = 40.0
 [node name="JoystickAttack" type="Sprite2D" parent="CanvasLayer/RigthBottom/Panel"]
 position = Vector2(-69, -81)
 scale = Vector2(5, 5)
-texture = ExtResource("4_esmm6")
+texture = ExtResource("8_md755")
 
 [node name="JoystickAttack" type="Sprite2D" parent="CanvasLayer/RigthBottom/Panel/JoystickAttack"]
 unique_name_in_owner = true
 position = Vector2(0, -0.199997)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("7_x3nb3")
-script = ExtResource("9_ldwna")
+texture = ExtResource("10_6cd3x")
+script = ExtResource("11_f30vv")
 
 [node name="JoystickCenter" type="Marker2D" parent="CanvasLayer/RigthBottom/Panel/JoystickAttack"]
 
@@ -362,14 +373,19 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 100
 layer_1/tile_data = PackedInt32Array(65543, 524288, 0, 131079, 458752, 1, 131080, 524288, 0, 196616, 524288, 1, 10, 524288, 0, 65546, 524288, 1, 131084, 524288, 0, 196620, 524288, 1, 262147, 524288, 0, 327683, 458752, 1, 196610, 524288, 0, 262146, 524288, 1, 131081, 196609, 1, 14, 524288, 0, 65550, 524288, 1, 8, 524288, 0, 65544, 524288, 1, 327682, 524288, 0, 393218, 524288, 1, 393236, 524288, 0, 458772, 524288, 1, 262162, 524288, 0, 327698, 458752, 1, 131092, 524288, 0, 196628, 524288, 1, 262145, 524288, 0, 327681, 524288, 1, 65536, 524288, 0, 131072, 524288, 1, 720907, 589824, 1, 262153, 655360, 0, 720904, 786432, 1, 524304, 589824, 0, 458770, 851968, 0, 131082, 720896, 0, 524300, 655360, 1)
-script = ExtResource("7_ewr5t")
+script = ExtResource("15_ihfir")
 
-[node name="Water" parent="." instance=ExtResource("16_vveis")]
-visible = true
-position = Vector2(250, 170.6)
-scale = Vector2(1, 1)
-region_rect = Rect2(0, 0, 100, 100)
-
-[node name="GreenSlime2" parent="." instance=ExtResource("12_8rhbl")]
+[node name="GreenSlime2" parent="." instance=ExtResource("16_cd5iw")]
 position = Vector2(118.6, 144)
-stats = SubResource("Resource_5c8t8")
+stats = SubResource("Resource_rc25h")
+
+[node name="Water" parent="." instance=ExtResource("18_yiwn8")]
+position = Vector2(253, 170.4)
+
+[node name="GreenSlime" parent="." instance=ExtResource("16_cd5iw")]
+position = Vector2(89.4, 73.8)
+stats = SubResource("Resource_j46br")
+
+[node name="GreenSlime3" parent="." instance=ExtResource("16_cd5iw")]
+position = Vector2(114.4, 104.6)
+stats = SubResource("Resource_2f32x")

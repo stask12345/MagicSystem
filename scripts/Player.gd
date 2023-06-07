@@ -6,6 +6,10 @@ var previousMotion = Vector2(0,0) #dla animatePlayer
 var canMakeDust = true
 var dustFrame = 0
 
+func _ready():
+	var shaders = preload("res://objects/ShaderPreload.tscn").instantiate()
+	add_child(shaders)
+
 func _process(delta):
 	var motion = joystick.get_value()
 	animatePlayer(motion)
