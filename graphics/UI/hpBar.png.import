@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://conhviow12h36"
-path="res://.godot/imported/joystick.png-19f2b8d13b4bb7051678749946b93dae.ctex"
+uid="uid://by1asfqpcjeh2"
+path="res://.godot/imported/hpBar.png-fddef771be165053cad124f422c886c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/joystick.png"
-dest_files=["res://.godot/imported/joystick.png-19f2b8d13b4bb7051678749946b93dae.ctex"]
+source_file="res://graphics/UI/hpBar.png"
+dest_files=["res://.godot/imported/hpBar.png-fddef771be165053cad124f422c886c3.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

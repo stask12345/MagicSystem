@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://comf40071j1es"]
+
+[ext_resource type="Script" path="res://scripts/playerStats.gd" id="1_vqwvk"]
+
+[resource]
+script = ExtResource("1_vqwvk")
+totalHp = 90

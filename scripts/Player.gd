@@ -5,6 +5,7 @@ var speed = 100000
 var previousMotion = Vector2(0,0) #dla animatePlayer
 var canMakeDust = true
 var dustFrame = 0
+@onready var character : Character = get_node("Character")
 
 func _ready():
 	var shaders = preload("res://objects/ShaderPreload.tscn").instantiate()
@@ -21,34 +22,33 @@ func animatePlayer(motion):
 	if motion.x != 0 and motion.y != 0:
 		if abs(motion.x) > abs(motion.y):
 			if motion.x > 0: 
-				$Player.scale.x = 1
+				$Character.scale.x = 1
 			else:
-				$Player.scale.x = -1
-			$Player/AnimationPlayer.current_animation = "runningSide"
+				$Character.scale.x = -1
+			$Character/AnimationPlayer.current_animation = "runningSide"
 		else:
 			if motion.y > 0:
-				$Player/AnimationPlayer.play("runningDown")
+				$Character/AnimationPlayer.play("runningDown")
 			else:
-				$Player/AnimationPlayer.play("runningUp")
+				$Character/AnimationPlayer.play("runningUp")
 		if canMakeDust:
 			if motion.x > 0.15 or motion.y > 0.15 or motion.x < -0.15 or motion.y < -0.15:
 				makeDust()
 	else:
 		if abs(previousMotion.x) > abs(previousMotion.y):
 			if previousMotion.x > 0:
-				$Player.scale.x = 1
+				$Character.scale.x = 1
 			else:
-				$Player.scale.x = -1
-			$Player/AnimationPlayer.play("idleSide")
+				$Character.scale.x = -1
+			$Character/AnimationPlayer.play("idleSide")
 		else:
 			if previousMotion.y > 0:
-				$Player/AnimationPlayer.play("idleDown")
+				$Character/AnimationPlayer.play("idleDown")
 			if previousMotion.y < 0:
-				$Player/AnimationPlayer.play("idleUp")
+				$Character/AnimationPlayer.play("idleUp")
 	previousMotion = motion
 
 func makeDust():
-	print("1")
 	canMakeDust = false
 	var d = preload("res://objects/DustRunningEffect.tscn").instantiate()
 	d.frame = dustFrame

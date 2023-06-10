@@ -2,10 +2,19 @@ extends TileMap
 
 var maxLenght = 20
 var maxWidth = 20
+@export var maxXPosition : int
+@export var maxYPosition : int
 
 func _ready():
+	setCameraBorders()
 	#generateGrassland() 
-	pass
+
+func setCameraBorders():
+	var camera = %Camera
+	camera.limit_left = 0
+	camera.limit_top = 0
+	camera.limit_right = maxXPosition
+	camera.limit_bottom = maxYPosition
 
 func generateGrassland():
 	for w in maxWidth:

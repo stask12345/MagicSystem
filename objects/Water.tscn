@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://lnn64m3ggtke"]
 
-[ext_resource type="Shader" path="res://resources/Water.gdshader" id="1_2e5rp"]
-[ext_resource type="Texture2D" uid="uid://cfirth5c3c3x1" path="res://water.png" id="2_j4y7y"]
+[ext_resource type="Shader" path="res://resources/Water.gdshader" id="1_03bou"]
+[ext_resource type="Texture2D" uid="uid://cfirth5c3c3x1" path="res://water.png" id="2_g850h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8017y"]
-shader = ExtResource("1_2e5rp")
+shader = ExtResource("1_03bou")
 shader_parameter/tile_factor = 2.0
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/time_factor = Vector2(3, 4)
@@ -15,6 +15,6 @@ shader_parameter/amplitude = Vector2(0.02, 0)
 z_index = -1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_8017y")
-texture = ExtResource("2_j4y7y")
+texture = ExtResource("2_g850h")
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 100)

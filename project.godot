@@ -32,6 +32,16 @@ import/blender/enabled=false
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+2d_render/layer_1="Terrain"
+2d_render/layer_2="Living"
+2d_render/layer_3="Interactive"
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="Living"
+2d_physics/layer_3="Interactive"
+2d_physics/layer_4="Damage"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

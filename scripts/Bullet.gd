@@ -23,7 +23,8 @@ func timerToDestroy():
 
 func _on_area_2d_area_entered(area):
 	var monster = area.get_parent()
-	monster.reciveDamage(damage)
+	monster.reciveDamage(damage,global_position)
 	$ParticlesDeath.emitting = true
+	$ParticlesDeath2.emitting = true
 	await $ParticlesDeath.property_list_changed
 	queue_free()

@@ -20,7 +20,6 @@ func scaleHealthBar():
 
 func updateHealthBar(currentValue : float, maxValue : float):
 	var fillLevelPercent : float = currentValue / maxValue
-	print(fillLevelPercent)
 	var fillLevel = barStartScale * fillLevelPercent
 	$Health.scale = Vector2(fillLevel,$Health.scale.y)
 	
