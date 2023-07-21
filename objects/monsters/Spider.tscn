@@ -1,0 +1,255 @@
+[gd_scene load_steps=20 format=3 uid="uid://cupgkbt72jh2f"]
+
+[ext_resource type="Script" path="res://scripts/MonsterRanged.gd" id="1_3qi4k"]
+[ext_resource type="PackedScene" uid="uid://t0cjprgjlh7s" path="res://objects/bullets/MonsterBullet.tscn" id="2_012ty"]
+[ext_resource type="Resource" uid="uid://cky7wvf542kf8" path="res://resources/monsters/rangedSpider.tres" id="2_gvm8p"]
+[ext_resource type="Texture2D" uid="uid://c25c3f4rdo5w4" path="res://graphics/monsters/spider.png" id="4_vgd6j"]
+[ext_resource type="Script" path="res://scripts/HPBar.gd" id="4_x2t2j"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="5_upmv7"]
+[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="6_1f5hk"]
+[ext_resource type="Texture2D" uid="uid://b68mlcifwrs7r" path="res://graphics/animation/blast.png" id="8_jjbfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2auh1"]
+size = Vector2(17.6, 9.41406)
+
+[sub_resource type="Animation" id="Animation_3s8on"]
+resource_name = "death"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dpgrx"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_abbro"]
+resource_name = "running"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_7usdf"]
+resource_name = "shooting"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 8, 9, 10, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cc7i"]
+_data = {
+"death": SubResource("Animation_3s8on"),
+"idle": SubResource("Animation_dpgrx"),
+"running": SubResource("Animation_abbro"),
+"shooting": SubResource("Animation_7usdf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xkjw"]
+size = Vector2(3.8, 2.69531)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x0uc"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkjyc"]
+radius = 40.0
+
+[sub_resource type="Gradient" id="Gradient_o0vcl"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0993377, 0.688742, 1)
+colors = PackedColorArray(1, 1, 1, 0.211765, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.270588)
+
+[sub_resource type="Gradient" id="Gradient_4m5py"]
+offsets = PackedFloat32Array(0.013245, 1)
+colors = PackedColorArray(0.796352, 0, 0.157929, 0.862745, 1, 1, 1, 0.235294)
+
+[node name="Spider" type="CharacterBody2D"]
+position = Vector2(-1.19209e-07, 1.19209e-07)
+collision_layer = 2
+safe_margin = 10.0
+script = ExtResource("1_3qi4k")
+speed = 100
+bullet = ExtResource("2_012ty")
+stats = ExtResource("2_gvm8p")
+advancedAnimation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_vgd6j")
+hframes = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.78814e-06, 1.81641)
+shape = SubResource("RectangleShape2D_2auh1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_8cc7i")
+}
+
+[node name="MonsterBody" type="Area2D" parent="."]
+scale = Vector2(5, 5)
+collision_layer = 10
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterBody"]
+position = Vector2(0, 0.00390607)
+shape = SubResource("RectangleShape2D_4xkjw")
+
+[node name="TriggerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
+shape = SubResource("CircleShape2D_5x0uc")
+
+[node name="RangedArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedArea"]
+shape = SubResource("CircleShape2D_mkjyc")
+
+[node name="HPBar" type="Node2D" parent="."]
+script = ExtResource("4_x2t2j")
+barScale = 1.5
+
+[node name="Background" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0.25, -5.75)
+scale = Vector2(12.5, 2.5)
+texture = ExtResource("5_upmv7")
+
+[node name="HealthWhite" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(1, 0.996078, 0.992157, 1)
+position = Vector2(0.250006, -5.75)
+scale = Vector2(11.5, 2)
+texture = ExtResource("5_upmv7")
+
+[node name="Health" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(0.698039, 0, 0, 1)
+position = Vector2(0.250002, -5.75)
+scale = Vector2(11.5, 2)
+texture = ExtResource("5_upmv7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+fixed_fps = 60
+fract_delta = false
+texture = ExtResource("6_1f5hk")
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(0, -10)
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_o0vcl")
+anim_speed_max = 2.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ParticlesShoot" type="CPUParticles2D" parent="."]
+position = Vector2(0, -17)
+emitting = false
+amount = 2
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("8_jjbfy")
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+color = Color(1, 1, 1, 0.643137)
+color_ramp = SubResource("Gradient_4m5py")
+
+[connection signal="area_shape_entered" from="TriggerArea" to="." method="_on_trigger_area_area_shape_entered" flags=18]
+[connection signal="area_shape_exited" from="TriggerArea" to="." method="_on_trigger_area_area_shape_exited" flags=18]

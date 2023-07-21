@@ -6,16 +6,19 @@ var previousMotion = Vector2(0,0) #dla animatePlayer
 var canMakeDust = true
 var dustFrame = 0
 @onready var character : Character = get_node("Character")
+var knockback : Vector2 = Vector2(0,0)
 
 func _ready():
 	var shaders = preload("res://objects/ShaderPreload.tscn").instantiate()
 	add_child(shaders)
 
-func _process(delta):
+func _physics_process(delta):
 	var motion = joystick.get_value()
 	animatePlayer(motion)
 	velocity.x = motion.x * speed * delta
 	velocity.y = motion.y * speed * delta
+	if knockback != Vector2(0,0):
+		velocity = knockback
 	move_and_slide()
 
 func animatePlayer(motion):
@@ -50,7 +53,7 @@ func animatePlayer(motion):
 
 func makeDust():
 	canMakeDust = false
-	var d = preload("res://objects/DustRunningEffect.tscn").instantiate()
+	var d = preload("res://objects/utility/DustRunningEffect.tscn").instantiate()
 	d.frame = dustFrame
 	dustFrame += 1
 	if dustFrame == 3:

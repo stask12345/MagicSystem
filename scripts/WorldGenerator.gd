@@ -4,8 +4,10 @@ var maxLenght = 20
 var maxWidth = 20
 @export var maxXPosition : int
 @export var maxYPosition : int
+@onready var system : GameSystem = get_node("/root/MainScene")
 
 func _ready():
+	randomize()
 	setCameraBorders()
 	#generateGrassland() 
 
@@ -28,3 +30,11 @@ func getChance(propability):
 		return true
 	else:
 		return false
+
+var monsterSpawn = preload("res://objects/utility/SummonMark.tscn")
+var wavePopulation = 15
+func generateMonsterWave():
+	for i in wavePopulation:
+		var m = monsterSpawn.instantiate()
+		add_child(m)
+		m.global_position = Vector2(randi()%maxXPosition,randi()%maxYPosition)

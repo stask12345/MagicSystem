@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://ivhf6eupnpo"]
+
+[ext_resource type="Texture2D" uid="uid://dsjj3dx6yetop" path="res://graphics/UI/hearthHP1.png" id="1_00pps"]
+[ext_resource type="Texture2D" uid="uid://cr6mm74hr62k4" path="res://graphics/UI/hearthHP2.png" id="2_7iyht"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="3_ueiig"]
+
+[sub_resource type="Gradient" id="Gradient_cmhb3"]
+offsets = PackedFloat32Array(0.0193548, 1)
+colors = PackedColorArray(1, 0.335514, 0.269595, 1, 0.990027, 0, 0.00392535, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_58e1b"]
+gradient = SubResource("Gradient_cmhb3")
+width = 32
+height = 32
+fill_from = Vector2(0.541284, 0.513761)
+fill_to = Vector2(0.486239, 0.224771)
+
+[node name="HPHearth" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(48, 38)
+scale = Vector2(4, 4)
+texture = ExtResource("1_00pps")
+
+[node name="FillBackground" type="Sprite2D" parent="Sprite"]
+clip_children = 1
+position = Vector2(-0.25, 0.5)
+texture = ExtResource("2_7iyht")
+offset = Vector2(0.25, -0.5)
+region_rect = Rect2(8, 9, 16, 14)
+
+[node name="EmptyFill" type="ColorRect" parent="Sprite/FillBackground"]
+offset_left = -20.0
+offset_top = -6.0
+offset_right = 20.0
+offset_bottom = 7.0
+pivot_offset = Vector2(39.9167, 15.0208)
+color = Color(0.964706, 0.964706, 0.964706, 1)
+
+[node name="Fill" type="Container" parent="Sprite/FillBackground"]
+clip_contents = true
+offset_left = -8.0
+offset_top = -6.0
+offset_right = 10.0
+offset_bottom = 6.0
+pivot_offset = Vector2(-0.0833335, 14.8333)
+
+[node name="RedFill" type="Sprite2D" parent="Sprite/FillBackground/Fill"]
+position = Vector2(18.9167, 23.1667)
+scale = Vector2(1.25, 1.25)
+texture = SubResource("GradientTexture2D_58e1b")
+offset = Vector2(-0.599999, -10.2)
+
+[node name="White" type="Sprite2D" parent="Sprite/FillBackground/Fill/RedFill"]
+self_modulate = Color(1, 1, 1, 0.427451)
+position = Vector2(-12.2667, -15.4667)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ueiig")

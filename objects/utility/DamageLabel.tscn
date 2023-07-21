@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctk3h0gaqu4ob"]
+
+[ext_resource type="FontFile" uid="uid://88njqog5s3vx" path="res://dpcomic.ttf" id="1_k4a77"]
+[ext_resource type="Script" path="res://scripts/DamageLabel.gd" id="2_iu8lc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5mna"]
+font = ExtResource("1_k4a77")
+font_size = 31
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DamageLabel" type="Node2D"]
+
+[node name="DamageLabel" type="Label" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 15.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(13, 13)
+text = "15"
+label_settings = SubResource("LabelSettings_u5mna")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_iu8lc")

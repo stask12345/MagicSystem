@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7wydxko3shhh"]
+
+[ext_resource type="Texture2D" uid="uid://q1vcbwu3a58j" path="res://graphics/elements/goldCoin.png" id="1_lv4j0"]
+[ext_resource type="Script" path="res://scripts/GoldCoin.gd" id="2_ru2q8"]
+
+[node name="GoldCoin" type="Sprite2D"]
+z_index = 3
+texture = ExtResource("1_lv4j0")
+script = ExtResource("2_ru2q8")

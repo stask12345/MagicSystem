@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://cahgehh08x2rm"]
+
+[ext_resource type="Script" path="res://scripts/Sigil.gd" id="1_e7g1s"]
+[ext_resource type="Texture2D" uid="uid://bvd8vcebvkbko" path="res://graphics/sigils/sigil1.png" id="2_ontwi"]
+
+[resource]
+script = ExtResource("1_e7g1s")
+textureSigil = ExtResource("2_ontwi")
+spellSigil = false
+nameSigil = "Double cast"
+description = "Cast 2 spells simultaneously."
+rank = 0
+rare = false

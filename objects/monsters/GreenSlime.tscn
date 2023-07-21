@@ -1,0 +1,202 @@
+[gd_scene load_steps=15 format=3 uid="uid://djbafi8x6va0u"]
+
+[ext_resource type="Script" path="res://scripts/MonsterSlime.gd" id="1_40k3i"]
+[ext_resource type="Resource" uid="uid://cavnw4t16e5uv" path="res://resources/monsters/greenSlime.tres" id="2_1l0fn"]
+[ext_resource type="Texture2D" uid="uid://dbu0y4le7xhdb" path="res://graphics/monsters/slimeGreen.png" id="3_o1dmo"]
+[ext_resource type="Script" path="res://scripts/HPBar.gd" id="5_bt3x6"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="6_muoq8"]
+[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="7_r2e7r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2auh1"]
+size = Vector2(10, 5)
+
+[sub_resource type="Animation" id="Animation_pbd6j"]
+resource_name = "death"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HPBar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_kxduq"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wsduy"]
+_data = {
+"death": SubResource("Animation_pbd6j"),
+"idle": SubResource("Animation_kxduq")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xkjw"]
+size = Vector2(10.6, 6.6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x0uc"]
+radius = 40.0
+
+[sub_resource type="Gradient" id="Gradient_o0vcl"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0993377, 0.688742, 1)
+colors = PackedColorArray(1, 1, 1, 0.211765, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.270588)
+
+[sub_resource type="Gradient" id="Gradient_gvl1r"]
+offsets = PackedFloat32Array(0, 0.390728, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="GreenSlime" type="CharacterBody2D"]
+collision_layer = 2
+safe_margin = 10.0
+script = ExtResource("1_40k3i")
+particlesColor = Color(0.214844, 0.578125, 0.429688, 1)
+stats = ExtResource("2_1l0fn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_o1dmo")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_2auh1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_wsduy")
+}
+
+[node name="MonsterBody" type="Area2D" parent="."]
+collision_layer = 10
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterBody"]
+shape = SubResource("RectangleShape2D_4xkjw")
+
+[node name="TriggerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
+shape = SubResource("CircleShape2D_5x0uc")
+
+[node name="HPBar" type="Node2D" parent="."]
+script = ExtResource("5_bt3x6")
+barScale = 1.5
+
+[node name="Background" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0.25, -5.75)
+scale = Vector2(12.5, 2.5)
+texture = ExtResource("6_muoq8")
+
+[node name="HealthWhite" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(1, 0.996078, 0.992157, 1)
+position = Vector2(0.250006, -5.75)
+scale = Vector2(11.5, 2)
+texture = ExtResource("6_muoq8")
+
+[node name="Health" type="Sprite2D" parent="HPBar"]
+self_modulate = Color(0.698039, 0, 0, 1)
+position = Vector2(0.250002, -5.75)
+scale = Vector2(11.5, 2)
+texture = ExtResource("6_muoq8")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+fixed_fps = 60
+fract_delta = false
+texture = ExtResource("7_r2e7r")
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(0, -10)
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_o0vcl")
+anim_speed_max = 2.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ParticlesShoot" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+scale_amount_min = 7.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_gvl1r")
+
+[connection signal="area_shape_entered" from="TriggerArea" to="." method="_on_trigger_area_area_shape_entered"]
+[connection signal="area_shape_exited" from="TriggerArea" to="." method="_on_trigger_area_area_shape_exited"]

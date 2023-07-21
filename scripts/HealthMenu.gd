@@ -1,8 +1,8 @@
 extends Control
 
 @onready var character : Character = %Character
-var fullHeart = preload("res://objects/HPHearth.tscn")
-var halfHeart = preload("res://objects/HPHearthHalf.tscn")
+var fullHeart = preload("res://objects/utility/HPHearth.tscn")
+var halfHeart = preload("res://objects/utility/HPHearthHalf.tscn")
 var previousHpState : int
 var animationArray = []
 
@@ -30,11 +30,9 @@ func updateHearts():
 	var hp = character.hp
 	
 	animationArray.clear()
-	print("hp ", hp)
 	for h in $GridContainer.get_children():
 		hp = fillHeart(h, hp)
 	
-	print(animationArray.size(), " ;jif")
 	animateFilling()
 
 func fillHeart(heart, fillValue : float):
@@ -47,6 +45,7 @@ func fillHeart(heart, fillValue : float):
 	else:
 		var currentFill = heart.get_node("Sprite/FillBackground/EmptyFill").scale.y
 		var nextFill : float = (float)(fillValue/30)
+		currentFill = snapped(currentFill,0.1)
 		if nextFill != currentFill:
 			animationArray.push_back(heart)
 			animationArray.push_back(nextFill)
@@ -65,6 +64,8 @@ func animateFilling(): #TODO animation speed depending on how much is filled
 				var arrayLength = animationArray.size() - 1
 				animationArray[arrayLength - animationIndex - 1].get_node("Sprite/FillBackground/EmptyFill").color = Color.GHOST_WHITE
 				t.tween_property(animationArray[arrayLength - animationIndex - 1].get_node("Sprite/FillBackground/Fill"),"scale:y",animationArray[arrayLength - animationIndex],0.3)
+				t.parallel().tween_property(animationArray[arrayLength - animationIndex - 1],"scale",Vector2(1.1,1.1),0.3)
+				t.parallel().chain().tween_property(animationArray[arrayLength - animationIndex - 1],"scale",Vector2(1,1),0.3)
 				t.tween_property(animationArray[arrayLength - animationIndex - 1].get_node("Sprite/FillBackground/EmptyFill"),"scale:y",animationArray[arrayLength - animationIndex],0.2)
 				animationIndex += 2
 		else:

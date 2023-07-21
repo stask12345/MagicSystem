@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccenyjao0uerk"]
+
+[ext_resource type="Texture2D" uid="uid://cjcfyaih6t3t7" path="res://graphics/UI/hearthHPHalf1.png" id="1_kuhm0"]
+[ext_resource type="Texture2D" uid="uid://d7jloypid7fc" path="res://graphics/UI/hearthHPHalf2.png" id="2_sdpsa"]
+
+[sub_resource type="Gradient" id="Gradient_cmhb3"]
+offsets = PackedFloat32Array(0.0193548, 1)
+colors = PackedColorArray(1, 0.335514, 0.269595, 1, 0.990027, 0, 0.00392535, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_58e1b"]
+gradient = SubResource("Gradient_cmhb3")
+width = 32
+height = 32
+fill_from = Vector2(0.541284, 0.513761)
+fill_to = Vector2(0.486239, 0.224771)
+
+[node name="HPHearthHalf" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(41, 42)
+scale = Vector2(3, 3)
+texture = ExtResource("1_kuhm0")
+
+[node name="Background" type="Sprite2D" parent="Sprite"]
+clip_children = 1
+position = Vector2(-0.25, 0.5)
+texture = ExtResource("2_sdpsa")
+offset = Vector2(0.25, -0.5)
+region_rect = Rect2(8, 9, 16, 14)
+
+[node name="EmptyFill" type="ColorRect" parent="Sprite/Background"]
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 6.0
+pivot_offset = Vector2(0.25, 13.8333)
+color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[node name="Fill" type="Container" parent="Sprite/Background"]
+offset_left = -9.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 6.0
+pivot_offset = Vector2(0.25, 13.8333)
+
+[node name="RedFill" type="Sprite2D" parent="Sprite/Background/Fill"]
+position = Vector2(19.9167, 23.1667)
+scale = Vector2(1.25, 1.25)
+texture = SubResource("GradientTexture2D_58e1b")
+offset = Vector2(-0.599999, -10.2)

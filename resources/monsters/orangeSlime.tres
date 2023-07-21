@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MonsterStats" load_steps=4 format=3 uid="uid://12gssg1s3p"]
+
+[ext_resource type="Script" path="res://scripts/monsterStats.gd" id="1_cu87w"]
+[ext_resource type="Script" path="res://scripts/monsterStatsSlime.gd" id="2_2wheq"]
+
+[sub_resource type="Resource" id="Resource_ry57h"]
+resource_local_to_scene = true
+script = ExtResource("2_2wheq")
+rangeOfJump = 0.4
+jumpFrequency = 1.5
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_cu87w")
+hp = 50
+damage = 10
+slimeStats = SubResource("Resource_ry57h")
+coinsMin = 1
+coinsMax = 2

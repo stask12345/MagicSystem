@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://2eoycp44ws2p"]
+
+[ext_resource type="Texture2D" uid="uid://y8tgss0nylpd" path="res://graphics/animation/explonationMark.png" id="1_wsom7"]
+[ext_resource type="Script" path="res://scripts/ExplonationMark.gd" id="2_ex5rv"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="2_sogbf"]
+
+[node name="ExplonationMark" type="Sprite2D"]
+self_modulate = Color(0.784314, 0.0470588, 0, 1)
+z_index = 2
+texture = ExtResource("1_wsom7")
+script = ExtResource("2_ex5rv")
+
+[node name="White" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(7.62939e-06, 3)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_sogbf")
+
+[node name="White2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(7.62939e-06, -1)
+scale = Vector2(1.4, 5.4)
+texture = ExtResource("2_sogbf")

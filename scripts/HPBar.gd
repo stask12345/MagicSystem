@@ -25,3 +25,6 @@ func updateHealthBar(currentValue : float, maxValue : float):
 	
 	var t = get_tree().create_tween()
 	t.tween_property($HealthWhite,"scale",Vector2(fillLevel, $HealthWhite.scale.y),0.3)
+	
+	if currentValue < 0:
+		visible = false

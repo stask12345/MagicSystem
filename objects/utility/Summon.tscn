@@ -1,0 +1,206 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhjdxp12nauom"]
+
+[ext_resource type="Script" path="res://scripts/SummonMark.gd" id="1_2wkta"]
+[ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/monsters/GreenSlime.tscn" id="2_uiu1l"]
+[ext_resource type="Texture2D" uid="uid://chxj1xkpiwwjq" path="res://graphics/animation/summoningParticle.png" id="3_rmyqe"]
+[ext_resource type="Texture2D" uid="uid://q3nugqee4qeb" path="res://graphics/animation/summoningRay.png" id="4_gwhnk"]
+[ext_resource type="Texture2D" uid="uid://hghf37mtfc8n" path="res://graphics/animation/summoning.png" id="5_ajplu"]
+
+[sub_resource type="Gradient" id="Gradient_nhtle"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_j1mxl"]
+resource_name = "idle"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Summoning:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Summoning:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Summoning:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.85, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.490196), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.227451)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SummoningRay:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.85, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SummoningRay:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.85, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -24), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SummoningRay:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.85, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0.5), Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CPUParticles2D2:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.9, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"summonMonster"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iv1j0"]
+_data = {
+"idle": SubResource("Animation_j1mxl")
+}
+
+[node name="Summon" type="Node2D"]
+z_index = 1
+position = Vector2(134.4, 155.8)
+script = ExtResource("1_2wkta")
+monster = ExtResource("2_uiu1l")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 3
+lifetime = 0.5
+texture = ExtResource("3_rmyqe")
+emission_shape = 2
+emission_sphere_radius = 10.0
+particle_flag_align_y = true
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 0.1
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_nhtle")
+hue_variation_min = -0.55
+hue_variation_max = 0.69
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.86
+texture = ExtResource("4_gwhnk")
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+
+[node name="Summoning" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.490196)
+position = Vector2(0.400001, -7.15256e-07)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ajplu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_iv1j0")
+}
+
+[node name="SummoningRay" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -24)
+scale = Vector2(1, 0.5)
+texture = ExtResource("4_gwhnk")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2(-6.40002, -23)
+emitting = false
+explosiveness = 1.0
+texture = ExtResource("3_rmyqe")
+emission_shape = 2
+emission_sphere_radius = 13.93
+particle_flag_align_y = true
+gravity = Vector2(0, 0)
+initial_velocity_max = 1.0
+orbit_velocity_max = 0.2
+radial_accel_min = -50.0
+radial_accel_max = -10.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0

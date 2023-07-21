@@ -15,7 +15,7 @@ func getDamage(damage : int, hitPoint):
 	t.tween_property(self,"self_modulate",Color(5,5,5),0.1)
 	t.tween_property(self,"self_modulate",Color(1,1,1),0.1)
 	%Camera.shake(8,8)
-	knock(hitPoint, 0.5)
+	knock(hitPoint, 5)
 	
 	heartsMenu.updateHearts()
 	$"../CharacterBody/CollisionShape2D".set_deferred("disabled",true)
@@ -28,16 +28,21 @@ func knock(point, power, time = 0.1):
 	direction = -direction
 	direction.normalized()
 	
-	var goal = global_position + (direction * power)
+	var knockbackDirection = (direction * power)
+	%Player.knockback = knockbackDirection
+	await get_tree().create_timer(time).timeout
+	%Player.knockback = Vector2(0,0)
 	
-	if knockBackTween:
-		knockBackTween.kill()
-	knockBackTween = create_tween()
-	knockBackTween.set_trans(Tween.TRANS_SINE)
-	knockBackTween.tween_property(get_parent(),"global_position",goal,time)
+#	var goal = global_position + (direction * power)
+#
+#	if knockBackTween:
+#		knockBackTween.kill()
+#	knockBackTween = create_tween()
+#	knockBackTween.set_trans(Tween.TRANS_SINE)
+#	knockBackTween.tween_property(get_parent(),"global_position",goal,time)
 
-func _on_character_body_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+func _on_character_body_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	var e = area.get_parent()
 	if e is Monster:
 		var monster : Monster = e
-		getDamage(e.stats.damage, e.global_position)
+		getDamage(monster.stats.damage, monster.global_position)
