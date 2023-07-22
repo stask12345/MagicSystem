@@ -9,9 +9,9 @@ var animationArray = []
 func _ready():
 	call_deferred("setUpHearts")
 
-func setUpHearts():
+func setUpHearts(): #initial settings
 	var container = $GridContainer
-	if container.get_child_count() > 0:
+	if container.get_child_count() > 0: #can be used after max health upgrade
 		var chs = container.get_children()
 		chs.all(queue_free)
 	
@@ -22,11 +22,11 @@ func setUpHearts():
 		var h = fullHeart.instantiate()
 		container.add_child(h)
 	
-	if characterTotalHp%30 == 15:
+	if characterTotalHp%30 == 15: #adding full hearts (30hp) #half hearts not implemented yet
 		var h = halfHeart.instantiate()
 		container.add_child(h)
 
-func updateHearts():
+func updateHearts(): #count how much hp will be filled
 	var hp = character.hp
 	
 	animationArray.clear()
@@ -35,7 +35,7 @@ func updateHearts():
 	
 	animateFilling()
 
-func fillHeart(heart, fillValue : float):
+func fillHeart(heart, fillValue : float): #make array for fill animation / happends after updating Hearts
 	if fillValue >= 30:
 		fillValue -= 30
 		var currentFill = heart.get_node("Sprite/FillBackground/Fill").scale.y

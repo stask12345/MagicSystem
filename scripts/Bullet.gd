@@ -15,7 +15,7 @@ func _ready():
 	$HomingArea/CollisionShape2D.position.x = homingArea
 
 var monsterToFollow : Monster
-func follow():
+func follow(): #For homing bullets
 	var distance = 999
 	monsterToFollow = null
 	for h in homingList:

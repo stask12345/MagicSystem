@@ -10,7 +10,7 @@ var jumping = false
 @export var bullet : PackedScene
 @export var particlesColor : Color = Color.WHITE
 
-func idleAttack():
+func idleAttack(): #attack loop
 	if agressive and !jumping:
 		jumping = true
 		await get_tree().create_timer(jumpFrequency).timeout
@@ -20,7 +20,7 @@ var currentScale = scale
 var nextScale = scale * 1.5
 var jumpDirection = Vector2(0,0)
 func jumpToPlayer():
-	if advancedAnimation:
+	if advancedAnimation and alive:
 		$AnimationPlayer.play("preparing")
 		await get_tree().create_timer(1).timeout
 		$AnimationPlayer.play("jumping")
@@ -53,7 +53,7 @@ func normalizeJump(direction): #I'm currently not using it #Makes slime jump in 
 	return direction
 
 func endJump():
-	if advancedAnimation:
+	if advancedAnimation and alive:
 		$AnimationPlayer.play("idle")
 	$ParticlesShoot.color = particlesColor
 	$ParticlesShoot.emitting = true

@@ -6,15 +6,15 @@
 [sub_resource type="Resource" id="Resource_0kq1j"]
 resource_local_to_scene = true
 script = ExtResource("2_wurd3")
-rangeOfJump = 0.3
+rangeOfJump = 0.4
 jumpFrequency = 2.0
 
 [resource]
 resource_local_to_scene = true
 resource_name = "greenSlime"
 script = ExtResource("1_o0bdu")
-hp = 30
-damage = 5
+hp = 15
+damage = 10
 slimeStats = SubResource("Resource_0kq1j")
-coinsMin = 4
-coinsMax = 8
+coinsMin = 1
+coinsMax = 2

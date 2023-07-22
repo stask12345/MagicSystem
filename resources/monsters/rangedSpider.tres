@@ -7,5 +7,5 @@ resource_local_to_scene = true
 script = ExtResource("1_c48y3")
 hp = 45
 damage = 20
-coinsMin = 1
-coinsMax = 2
+coinsMin = 3
+coinsMax = 5

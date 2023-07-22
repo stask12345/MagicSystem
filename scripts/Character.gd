@@ -32,15 +32,8 @@ func knock(point, power, time = 0.1):
 	%Player.knockback = knockbackDirection
 	await get_tree().create_timer(time).timeout
 	%Player.knockback = Vector2(0,0)
-	
-#	var goal = global_position + (direction * power)
-#
-#	if knockBackTween:
-#		knockBackTween.kill()
-#	knockBackTween = create_tween()
-#	knockBackTween.set_trans(Tween.TRANS_SINE)
-#	knockBackTween.tween_property(get_parent(),"global_position",goal,time)
 
+#recive damage
 func _on_character_body_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	var e = area.get_parent()
 	if e is Monster:

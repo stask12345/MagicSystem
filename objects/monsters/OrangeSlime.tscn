@@ -111,6 +111,7 @@ position = Vector2(-9.53674e-07, -4.76837e-07)
 collision_layer = 2
 safe_margin = 10.0
 script = ExtResource("1_jg1j4")
+jumpPower = 450
 particlesColor = Color(0.871094, 0.441406, 0.148438, 1)
 stats = ExtResource("2_2hb67")
 

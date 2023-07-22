@@ -9,14 +9,13 @@ var dustFrame = 0
 var knockback : Vector2 = Vector2(0,0)
 
 func _ready():
-	var shaders = preload("res://objects/ShaderPreload.tscn").instantiate()
+	var shaders = preload("res://objects/ShaderPreload.tscn").instantiate() #preloading shaders
 	add_child(shaders)
 
 func _physics_process(delta):
 	var motion = joystick.get_value()
 	animatePlayer(motion)
-	velocity.x = motion.x * speed * delta
-	velocity.y = motion.y * speed * delta
+	velocity = motion * speed * delta
 	if knockback != Vector2(0,0):
 		velocity = knockback
 	move_and_slide()
@@ -51,7 +50,7 @@ func animatePlayer(motion):
 				$Character/AnimationPlayer.play("idleUp")
 	previousMotion = motion
 
-func makeDust():
+func makeDust(): #running effect
 	canMakeDust = false
 	var d = preload("res://objects/utility/DustRunningEffect.tscn").instantiate()
 	d.frame = dustFrame

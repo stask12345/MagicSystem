@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://rsfix2d6mrec"]
+[gd_scene load_steps=14 format=3 uid="uid://c7q1encesfiy0"]
 
-[ext_resource type="Script" path="res://scripts/MonsterMele.gd" id="1_73y5g"]
-[ext_resource type="Resource" uid="uid://cjyvfpcs846hn" path="res://resources/monsters/batWeak.tres" id="2_ai1oe"]
-[ext_resource type="Texture2D" uid="uid://bmag5jhjqv7jj" path="res://graphics/monsters/batWeak.png" id="3_sp1xc"]
-[ext_resource type="Script" path="res://scripts/HPBar.gd" id="4_pewg1"]
-[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="5_kgkqh"]
-[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="6_vfbnl"]
+[ext_resource type="Script" path="res://scripts/MonsterMele.gd" id="1_r1oup"]
+[ext_resource type="Resource" uid="uid://c3win3ll5g81y" path="res://resources/monsters/batStrong.tres" id="2_w4pv0"]
+[ext_resource type="Texture2D" uid="uid://dgyn58j262qea" path="res://graphics/monsters/batStrong.png" id="3_e0xtb"]
+[ext_resource type="Script" path="res://scripts/HPBar.gd" id="4_ipp18"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="5_wmfts"]
+[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="6_54cwk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2auh1"]
 size = Vector2(11.3281, 4.29688)
@@ -102,11 +102,13 @@ colors = PackedColorArray(1, 1, 1, 0.211765, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.
 collision_layer = 2
 collision_mask = 0
 safe_margin = 10.0
-script = ExtResource("1_73y5g")
-stats = ExtResource("2_ai1oe")
+script = ExtResource("1_r1oup")
+speed = 300
+stats = ExtResource("2_w4pv0")
+agressionTime = 4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_sp1xc")
+texture = ExtResource("3_e0xtb")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -136,26 +138,26 @@ monitorable = false
 shape = SubResource("CircleShape2D_5x0uc")
 
 [node name="HPBar" type="Node2D" parent="."]
-script = ExtResource("4_pewg1")
+script = ExtResource("4_ipp18")
 barScale = 1.5
 
 [node name="Background" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(0.25, -5.75)
 scale = Vector2(12.5, 2.5)
-texture = ExtResource("5_kgkqh")
+texture = ExtResource("5_wmfts")
 
 [node name="HealthWhite" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(1, 0.996078, 0.992157, 1)
 position = Vector2(0.250006, -5.75)
 scale = Vector2(11.5, 2)
-texture = ExtResource("5_kgkqh")
+texture = ExtResource("5_wmfts")
 
 [node name="Health" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0.698039, 0, 0, 1)
 position = Vector2(0.250002, -5.75)
 scale = Vector2(11.5, 2)
-texture = ExtResource("5_kgkqh")
+texture = ExtResource("5_wmfts")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -167,7 +169,7 @@ randomness = 0.5
 lifetime_randomness = 0.5
 fixed_fps = 60
 fract_delta = false
-texture = ExtResource("6_vfbnl")
+texture = ExtResource("6_54cwk")
 emission_shape = 1
 emission_sphere_radius = 20.0
 gravity = Vector2(0, -10)

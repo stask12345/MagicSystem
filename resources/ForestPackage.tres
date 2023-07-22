@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RealmPackage" load_steps=12 format=3 uid="uid://i0emy6uyahap"]
+
+[ext_resource type="PackedScene" uid="uid://djbafi8x6va0u" path="res://objects/monsters/GreenSlime.tscn" id="1_62lq4"]
+[ext_resource type="Script" path="res://scripts/realmPackage.gd" id="1_yhgqu"]
+[ext_resource type="PackedScene" uid="uid://rsfix2d6mrec" path="res://objects/monsters/BatWeak.tscn" id="2_kk2g3"]
+[ext_resource type="PackedScene" uid="uid://cupgkbt72jh2f" path="res://objects/monsters/Spider.tscn" id="3_j15sv"]
+[ext_resource type="PackedScene" uid="uid://1ewl3vckbvr2" path="res://objects/monsters/OrangeSlime.tscn" id="4_j6o24"]
+[ext_resource type="PackedScene" uid="uid://caf5sootm6b37" path="res://objects/monsters/BatNormal.tscn" id="5_o27nq"]
+[ext_resource type="PackedScene" uid="uid://db54niek4vivy" path="res://objects/monsters/BigBlueSlime.tscn" id="6_noyyy"]
+[ext_resource type="PackedScene" uid="uid://bhve2rqijfmok" path="res://objects/monsters/RedSlime.tscn" id="7_n0pdl"]
+[ext_resource type="PackedScene" uid="uid://cagwr0i0yelf" path="res://objects/monsters/SpiderStrong.tscn" id="8_kv3d4"]
+[ext_resource type="PackedScene" uid="uid://33r1djsefu4f" path="res://objects/monsters/BigBlueSlimeStrong.tscn" id="9_nxyw8"]
+[ext_resource type="PackedScene" uid="uid://c7q1encesfiy0" path="res://objects/monsters/BatStrong.tscn" id="10_6fg15"]
+
+[resource]
+script = ExtResource("1_yhgqu")
+monsterTier1 = Array[PackedScene]([ExtResource("1_62lq4"), ExtResource("2_kk2g3"), ExtResource("3_j15sv")])
+monsterTier2 = Array[PackedScene]([ExtResource("4_j6o24"), ExtResource("5_o27nq"), ExtResource("3_j15sv"), ExtResource("6_noyyy")])
+monsterTier3 = Array[PackedScene]([ExtResource("7_n0pdl"), ExtResource("8_kv3d4"), ExtResource("9_nxyw8"), ExtResource("10_6fg15")])
+monsterPopulation = Array[int]([])
+numberOfMaps = 0

@@ -8,6 +8,8 @@ var maxWidth = 20
 
 func _ready():
 	randomize()
+	#generateGrassland()
+	
 	setCameraBorders()
 	#generateGrassland() 
 
@@ -25,7 +27,7 @@ func generateGrassland():
 			if getChance(10):
 				set_cell(0,Vector2i(w,l),0,Vector2i(randi()%4,randi()%2))
 
-func getChance(propability):
+func getChance(propability): #return true or false #propability 10 - 1 true 9 false
 	if randi()%propability == 0:
 		return true
 	else:
@@ -33,7 +35,7 @@ func getChance(propability):
 
 var monsterSpawn = preload("res://objects/utility/SummonMark.tscn")
 var wavePopulation = 15
-func generateMonsterWave():
+func generateMonsterWave(): #spawn randomly monsters
 	for i in wavePopulation:
 		var m = monsterSpawn.instantiate()
 		add_child(m)

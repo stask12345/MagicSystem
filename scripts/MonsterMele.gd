@@ -4,7 +4,7 @@ extends Monster
 var targetPosition : Vector2
 var following = false
 
-func startFollowing():
+func startFollowing(): #attack loop
 	if !following:
 		following = true
 		followPlayer()

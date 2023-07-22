@@ -7,7 +7,6 @@
 size = Vector2(10.8, 6.80001)
 
 [node name="ChestWooden" type="Sprite2D"]
-position = Vector2(153.6, 197.2)
 texture = ExtResource("1_ot5l7")
 hframes = 4
 script = ExtResource("2_rvxme")

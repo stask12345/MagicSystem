@@ -1,4 +1,4 @@
-extends Control
+extends Control #script for wave timer
 
 @onready var system : GameSystem = get_node("/root/MainScene")
 

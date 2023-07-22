@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://db54niek4vivy"]
+[gd_scene load_steps=18 format=3 uid="uid://33r1djsefu4f"]
 
-[ext_resource type="Script" path="res://scripts/MonsterSlime.gd" id="1_poutd"]
-[ext_resource type="Texture2D" uid="uid://dktnt3u7ecnvu" path="res://graphics/monsters/monster-blueslime.png" id="2_gjqaw"]
-[ext_resource type="PackedScene" uid="uid://t0cjprgjlh7s" path="res://objects/bullets/MonsterBullet.tscn" id="2_iymhe"]
-[ext_resource type="Resource" uid="uid://dx0r2trcvt7ln" path="res://resources/monsters/bigblueSlime.tres" id="2_yamk2"]
-[ext_resource type="Script" path="res://scripts/HPBar.gd" id="3_lkh4p"]
-[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="4_jctev"]
-[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="5_5cl40"]
-[ext_resource type="Animation" uid="uid://cyns88d28fe2h" path="res://death.res" id="5_w6aqn"]
+[ext_resource type="Script" path="res://scripts/MonsterSlime.gd" id="1_ws5xm"]
+[ext_resource type="PackedScene" uid="uid://t0cjprgjlh7s" path="res://objects/bullets/MonsterBullet.tscn" id="2_ukwoj"]
+[ext_resource type="Resource" uid="uid://b20b3ljvjht66" path="res://resources/monsters/bigblueSlimeStrong.tres" id="3_lew1c"]
+[ext_resource type="Texture2D" uid="uid://og34pvqhsts1" path="res://graphics/monsters/bigBlueSlimeStrong.png" id="4_lbaaf"]
+[ext_resource type="Animation" uid="uid://cyns88d28fe2h" path="res://death.res" id="5_lxad2"]
+[ext_resource type="Script" path="res://scripts/HPBar.gd" id="6_mrb06"]
+[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="7_ehh5x"]
+[ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="8_wouaw"]
 
 [sub_resource type="Animation" id="Animation_42x4x"]
 resource_name = "idle"
@@ -57,7 +57,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ph2e1"]
 _data = {
-"death": ExtResource("5_w6aqn"),
+"death": ExtResource("5_lxad2"),
 "idle": SubResource("Animation_42x4x"),
 "jumping": SubResource("Animation_dot05"),
 "preparing": SubResource("Animation_3eicl")
@@ -84,16 +84,16 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="BigBlueSlime" type="CharacterBody2D"]
 collision_layer = 2
 safe_margin = 10.0
-script = ExtResource("1_poutd")
+script = ExtResource("1_ws5xm")
 jumpPower = 225
 shootingJump = true
-bullet = ExtResource("2_iymhe")
+bullet = ExtResource("2_ukwoj")
 particlesColor = Color(0.355469, 0.429688, 0.878906, 1)
-stats = ExtResource("2_yamk2")
+stats = ExtResource("3_lew1c")
 advancedAnimation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_gjqaw")
+texture = ExtResource("4_lbaaf")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -124,26 +124,26 @@ monitorable = false
 shape = SubResource("CircleShape2D_l5p4a")
 
 [node name="HPBar" type="Node2D" parent="."]
-script = ExtResource("3_lkh4p")
+script = ExtResource("6_mrb06")
 barScale = 1.5
 
 [node name="Background" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(0.25, -5.75)
 scale = Vector2(12.5, 2.5)
-texture = ExtResource("4_jctev")
+texture = ExtResource("7_ehh5x")
 
 [node name="HealthWhite" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(1, 0.996078, 0.992157, 1)
 position = Vector2(0.250006, -5.75)
 scale = Vector2(11.5, 2)
-texture = ExtResource("4_jctev")
+texture = ExtResource("7_ehh5x")
 
 [node name="Health" type="Sprite2D" parent="HPBar"]
 self_modulate = Color(0.698039, 0, 0, 1)
 position = Vector2(0.250002, -5.75)
 scale = Vector2(11.5, 2)
-texture = ExtResource("4_jctev")
+texture = ExtResource("7_ehh5x")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
@@ -155,7 +155,7 @@ randomness = 0.5
 lifetime_randomness = 0.5
 fixed_fps = 60
 fract_delta = false
-texture = ExtResource("5_5cl40")
+texture = ExtResource("8_wouaw")
 emission_shape = 1
 emission_sphere_radius = 20.0
 gravity = Vector2(0, -10)

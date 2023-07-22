@@ -6,7 +6,7 @@ var barStartScale : float
 func _ready():
 	scaleHealthBar()
 
-func scaleHealthBar():
+func scaleHealthBar(): #initial settings
 	$Background.scale = Vector2($Background.scale.x * barScale, $Background.scale.y)
 	$Health.scale = Vector2($Health.scale.x * barScale, $Health.scale.y)
 	$HealthWhite.scale = Vector2($HealthWhite.scale.x * barScale, $HealthWhite.scale.y)

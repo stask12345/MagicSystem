@@ -6,6 +6,6 @@
 resource_local_to_scene = true
 script = ExtResource("1_aqwuv")
 hp = 20
-damage = 5
+damage = 10
 coinsMin = 1
-coinsMax = 2
+coinsMax = 4

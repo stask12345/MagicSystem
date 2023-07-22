@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MonsterStats" load_steps=2 format=3 uid="uid://c3win3ll5g81y"]
+
+[ext_resource type="Script" path="res://scripts/monsterStats.gd" id="1_kwek2"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_kwek2")
+hp = 40
+damage = 20
+coinsMin = 3
+coinsMax = 6

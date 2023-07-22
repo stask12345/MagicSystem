@@ -106,6 +106,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 collision_layer = 2
 safe_margin = 10.0
 script = ExtResource("1_40k3i")
+jumpPower = 425
 particlesColor = Color(0.214844, 0.578125, 0.429688, 1)
 stats = ExtResource("2_1l0fn")
 

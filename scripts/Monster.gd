@@ -27,7 +27,7 @@ func reciveDamage(damage, hitPosition):
 	showDamageLabel(damage)
 	reciveDamageAnimation()
 	knock(hitPosition,5)
-	if stats.hp <= 0:
+	if stats.hp <= 0: #on death
 		system.deleteMonsterFromMap(self)
 		dropCoins()
 		$MonsterBody/CollisionShape2D.set_deferred("disabled",true) 
@@ -56,7 +56,7 @@ func knock(point, power, time = 0.1):
 	await get_tree().create_timer(time).timeout
 	velocity -= knockbackDirection
 	
-	if self is MonsterSlime:
+	if self is MonsterSlime: #fix error with slimes going backward
 		if (velocity.x == 0 and velocity.y == 0) or (previousVelocity.x < 0 and velocity.x >= 0) or (previousVelocity.x > 0 and velocity.x <= 0) or (previousVelocity.y < 0 and velocity.y >= 0) or (previousVelocity.y > 0 and velocity.y <= 0):
 			velocity = Vector2(0,0)
 	
@@ -104,7 +104,7 @@ func loseTrigger():
 	agressive = false
 
 var agressionMark = preload("res://objects/utility/ExplonationMark.tscn")
-func showAgressionMark():
+func showAgressionMark(): 
 	var m = agressionMark.instantiate()
 	m.position.y -= $Sprite2D.texture.get_height()
 	add_child(m)

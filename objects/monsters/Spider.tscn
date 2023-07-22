@@ -150,6 +150,7 @@ collision_layer = 2
 safe_margin = 10.0
 script = ExtResource("1_3qi4k")
 speed = 100
+shootingSpeed = 0.8
 bullet = ExtResource("2_012ty")
 stats = ExtResource("2_gvm8p")
 advancedAnimation = true

@@ -1,7 +1,7 @@
 extends Monster
 
 @export var speed = 250
-@export var shootingSpeed = 1
+@export var shootingSpeed : float = 1
 @export var bullet : PackedScene
 var targetPosition : Vector2
 var inShootingRange = false
@@ -12,7 +12,7 @@ func _ready():
 	$RangedArea.connect("area_shape_entered",enteredShootingRange)
 	$RangedArea.connect("area_shape_exited",exitedShootingRange)
 
-func startAction():
+func startAction(): #attack loop
 	if !isDoingAction and agressive and stats.hp > 0:
 		isDoingAction = true
 		if advancedAnimation:
@@ -21,22 +21,21 @@ func startAction():
 			else:
 				$Sprite2D.scale.x = -1
 		
-		if inShootingRange:
+		if inShootingRange and alive: #shooting
 			velocity = Vector2(0,0)
 			$AnimationPlayer.play("shooting")
 			await get_tree().create_timer(shootingSpeed).timeout
 			isDoingAction = false
 			startAction()
 		else:
-			followPlayer()
-			$AnimationPlayer.play("running")
+			followPlayer() #following
+			if alive: $AnimationPlayer.play("running")
 			await get_tree().create_timer(0.2).timeout
 			isDoingAction = false
 			if velocity != Vector2(0,0):
 				startAction()
 	if !agressive:
-		print("a")
-		$AnimationPlayer.play("idle")
+		if alive: $AnimationPlayer.play("idle")
 
 func followPlayer(): #updates player position
 	navigationAgent.target_position = player.global_position #Seeking goal vector
