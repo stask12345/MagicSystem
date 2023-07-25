@@ -1,12 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://1t2m8fyfsov4"]
+[gd_scene load_steps=2 format=3 uid="uid://1t2m8fyfsov4"]
 
 [ext_resource type="Script" path="res://scripts/ShaderPreload.gd" id="1_noj48"]
-[ext_resource type="PackedScene" uid="uid://lnn64m3ggtke" path="res://objects/utility/Water.tscn" id="2_lsfnq"]
 
 [node name="ShaderPreload" type="Node2D"]
 script = ExtResource("1_noj48")
-
-[node name="Water2" parent="." instance=ExtResource("2_lsfnq")]
-z_index = -25
-position = Vector2(-11, -8.4)
-scale = Vector2(0.1, 0.1)
