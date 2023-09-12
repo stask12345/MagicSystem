@@ -1,9 +1,9 @@
 extends Control #script for wave timer
 
-@onready var system : GameSystem = get_node("/root/MainScene")
+@onready var system : GameSystem = get_node("/root/MainScene/Game")
 
-func _ready():
-	call_deferred("updateWaveTimer")
+#func _ready():
+#	call_deferred("updateWaveTimer")
 
 func updateWaveTimer():
 	$WaveCount.text = "Wave " + str(system.currentWave + 1) + "/" + str(system.maxWaves)

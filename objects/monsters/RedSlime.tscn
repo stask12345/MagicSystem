@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="5_qiyl0"]
 [ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="6_jqkvn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2auh1"]
-size = Vector2(8, 4)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxeg2"]
+radius = 2.0
+height = 8.0
 
 [sub_resource type="Animation" id="Animation_hh48v"]
 length = 0.001
@@ -121,8 +122,9 @@ texture = ExtResource("3_apxdl")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.53674e-07, 7.15256e-07)
-shape = SubResource("RectangleShape2D_2auh1")
+position = Vector2(9.53674e-07, 4.76837e-07)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jxeg2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

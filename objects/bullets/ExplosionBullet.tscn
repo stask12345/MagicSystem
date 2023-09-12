@@ -1,0 +1,143 @@
+[gd_scene load_steps=10 format=3 uid="uid://tcuugrb07rdm"]
+
+[ext_resource type="Script" path="res://scripts/ExplosionBullet.gd" id="1_cshlc"]
+[ext_resource type="Texture2D" uid="uid://c2ht6h8l2maa1" path="res://graphics/bullets/explosionBullet.png" id="1_uc525"]
+[ext_resource type="Texture2D" uid="uid://b68mlcifwrs7r" path="res://graphics/animation/blast.png" id="3_r01op"]
+[ext_resource type="Texture2D" uid="uid://eo72wh3ko1j0" path="res://graphics/animation/Line.png" id="4_bpuuk"]
+
+[sub_resource type="Curve" id="Curve_i16ts"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.274262, 0.684211), 0.0, 0.0, 0, 0, Vector2(0.991561, 0.968421), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_1ybtd"]
+colors = PackedColorArray(0.701961, 0.0705882, 0, 0.964706, 0.627451, 0.352941, 0.0352941, 0.694118)
+
+[sub_resource type="Gradient" id="Gradient_pgh4d"]
+colors = PackedColorArray(1, 0.803922, 0.172549, 1, 1, 0.803922, 0.172549, 0.490196)
+
+[sub_resource type="Animation" id="Animation_78ob6"]
+resource_name = "deathAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticlesDeath:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesDeath2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticlesDeath3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y364l"]
+_data = {
+"deathAnimation": SubResource("Animation_78ob6")
+}
+
+[node name="ExplosionBullet" type="CharacterBody2D"]
+script = ExtResource("1_cshlc")
+isDestoriedByAnim = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uc525")
+
+[node name="particles" type="Node2D" parent="Sprite2D"]
+position = Vector2(0, -2)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D/particles"]
+lifetime = 0.1
+direction = Vector2(0, -1)
+spread = 20.71
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 6.0
+
+[node name="ParticlesDeath" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 2
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_r01op")
+gravity = Vector2(0, 0)
+scale_amount_min = 8.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_i16ts")
+color = Color(1, 1, 1, 0.643137)
+color_ramp = SubResource("Gradient_1ybtd")
+
+[node name="ParticlesDeath2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.83
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(0.835294, 0.223529, 0, 1)
+hue_variation_min = -0.4
+hue_variation_max = 0.35
+
+[node name="ParticlesDeath3" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.15
+one_shot = true
+texture = ExtResource("4_bpuuk")
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+color = Color(1, 0.803922, 0.172549, 1)
+color_ramp = SubResource("Gradient_pgh4d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y364l")
+}

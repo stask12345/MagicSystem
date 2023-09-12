@@ -59,6 +59,21 @@ func makeDust(): #running effect
 		dustFrame = 0
 	d.position = position
 	d.position = Vector2(d.position.x, d.position.y + 8)
-	get_node("/root/MainScene").add_child(d)
+	get_node("/root/MainScene/Game").add_child(d)
 	await get_tree().create_timer(0.2).timeout
 	canMakeDust = true
+
+func slowlyFall(): #for animation purposes when player spawn
+	visible = true
+	%Camera.position_smoothing_enabled = true
+	%Camera.limit_smoothed = true
+	$AnimationPlayer.play("spawnPlayer")
+	var t = get_tree().create_tween()
+	t.set_ease(Tween.EASE_OUT)
+	t.set_trans(Tween.TRANS_QUAD)
+	t.tween_property(self,"position",Vector2(position.x,position.y + 10),1)
+	t.parallel().tween_property($Camera,"zoom",Vector2(1.3,1.3),1)
+
+func endFall(): #for spawn animation
+	$Character/AnimationPlayer.play("idleDown")
+	$WeponHolder.visible = true

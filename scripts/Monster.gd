@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Monster
 @export var stats : MonsterStats
 @onready var maxHp = stats.hp
-@onready var player = get_node("/root/MainScene/TileMap/Player")
+@onready var player = get_node("/root/MainScene/Game/TileMap/Player")
 @onready var hpBar = $HPBar
 @onready var navigationAgent := $NavigationAgent2D
 @export var agressionTime : float = 3
@@ -12,7 +12,7 @@ var lastDamage = 0
 var agressive = false
 var alive = true
 @onready var timer : Timer = $Timer
-@onready var system : GameSystem = get_node("/root/MainScene")
+@onready var system : GameSystem = get_node("/root/MainScene/Game")
 
 func _ready():
 	timer.connect("timeout",loseTrigger)
@@ -55,6 +55,12 @@ func knock(point, power, time = 0.1):
 	velocity += knockbackDirection
 	await get_tree().create_timer(time).timeout
 	velocity -= knockbackDirection
+	
+	if !self is MonsterSlime:
+		if abs(velocity.x) > abs(previousVelocity.x):
+			velocity.x = previousVelocity.x
+		if abs(velocity.y) > abs(previousVelocity.y):
+			velocity.y = previousVelocity.y
 	
 	if self is MonsterSlime: #fix error with slimes going backward
 		if (velocity.x == 0 and velocity.y == 0) or (previousVelocity.x < 0 and velocity.x >= 0) or (previousVelocity.x > 0 and velocity.x <= 0) or (previousVelocity.y < 0 and velocity.y >= 0) or (previousVelocity.y > 0 and velocity.y <= 0):

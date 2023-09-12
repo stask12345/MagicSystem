@@ -19,6 +19,7 @@ radius = 20.0
 self_modulate = Color(3, 3, 3, 1)
 z_index = 3
 script = ExtResource("1_1nkxe")
+isHoming = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_mv3xt")
@@ -80,12 +81,6 @@ initial_velocity_min = 100.0
 initial_velocity_max = 150.0
 scale_amount_min = 3.0
 scale_amount_max = 4.0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-energy = 0.2
-texture = ExtResource("5_c4dgk")
-texture_scale = 0.1
 
 [node name="LightCircleSmall" type="Sprite2D" parent="."]
 self_modulate = Color(2, 2, 2, 0.309804)

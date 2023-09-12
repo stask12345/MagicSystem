@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="6_muoq8"]
 [ext_resource type="Texture2D" uid="uid://ddimaevpcdinn" path="res://resources/animation/smallExplosion.tres" id="7_r2e7r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2auh1"]
-size = Vector2(10, 5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fff20"]
+radius = 2.5
+height = 10.0
 
 [sub_resource type="Animation" id="Animation_pbd6j"]
 resource_name = "death"
@@ -116,7 +117,8 @@ hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_2auh1")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fff20")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -181,6 +183,8 @@ color_ramp = SubResource("Gradient_o0vcl")
 anim_speed_max = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 400.0
+radius = 25.87
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

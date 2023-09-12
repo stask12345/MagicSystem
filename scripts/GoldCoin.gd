@@ -1,15 +1,18 @@
 extends Sprite2D
 
-@onready var player = get_node("/root/MainScene/TileMap/Player")
+@onready var player = get_node("/root/MainScene/Game/TileMap/Player")
+@export var value : int = 1
 
 var follow = false
 var speed = 10
 
+@onready var goldLabel = get_node("/root/MainScene/Game/CanvasLayer/RightTop/Gold")
 func _physics_process(delta):
 	if follow:
 		speed += 2
 		position = position.move_toward(player.position,delta * speed)
 		if position.distance_to(player.position) < 8:
+			goldLabel.updateGoldCounter(value)
 			queue_free()
 
 func animateCoin():

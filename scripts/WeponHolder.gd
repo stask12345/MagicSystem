@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var joystickAttack = %JoystickAttack
-@onready var mainScene = get_node("/root/MainScene")
+@onready var mainScene = get_node("/root/MainScene/Game")
 var canShoot = true
 var holdedWepon
 @export var currentWand : Wand

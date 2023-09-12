@@ -1,9 +1,14 @@
 extends Sprite2D
 class_name Character
 
-@export var stats : CharacterStats = CharacterStats.new()
-@onready var hp := stats.totalHp
+@onready var resources = get_node("/root/MainScene/Resources")
+var hp : int
+var totalHp : int #It will be nessesery if I want to add blue hearts
 @onready var heartsMenu := %LeftTop
+
+func _ready():
+	totalHp = resources.playerData.totalHp
+	hp = resources.playerData.totalHp
 
 func getDamage(damage : int, hitPoint):
 	hp -= damage

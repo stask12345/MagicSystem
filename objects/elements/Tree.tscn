@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://ciov4k2j5kt6e"]
+
+[ext_resource type="Texture2D" uid="uid://jwol3maftbv5" path="res://graphics/tiles/tree.png" id="1_jbn6n"]
+[ext_resource type="Script" path="res://scripts/Tree.gd" id="2_7xmex"]
+
+[sub_resource type="Animation" id="Animation_dvhj4"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0523599, 0.0, 0.0523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kdsvo"]
+_data = {
+"idle": SubResource("Animation_dvhj4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysfyb"]
+size = Vector2(8.19998, 8.8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lyf0s"]
+radius = 3.16228
+
+[node name="Tree" type="Sprite2D"]
+z_index = 1
+position = Vector2(0, -8)
+texture = ExtResource("1_jbn6n")
+script = ExtResource("2_7xmex")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kdsvo")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.299988, 10)
+shape = SubResource("RectangleShape2D_ysfyb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10.2)
+shape = SubResource("CircleShape2D_lyf0s")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

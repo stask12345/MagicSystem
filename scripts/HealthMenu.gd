@@ -15,7 +15,7 @@ func setUpHearts(): #initial settings
 		var chs = container.get_children()
 		chs.all(queue_free)
 	
-	var characterTotalHp = character.stats.totalHp
+	var characterTotalHp = character.totalHp
 	previousHpState = characterTotalHp
 	var fullHearts : int = characterTotalHp/30
 	for i in fullHearts:

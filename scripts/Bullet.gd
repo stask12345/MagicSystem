@@ -3,16 +3,20 @@ class_name Bullet
 
 @export var homingArea = 20
 @export var homingSpeed = 0.1
+@onready var speed = currentWand.spellSigil.spellSigilStats.speed
 
 var currentWand : Wand
+@export var isHoming = false
+@export var isDestoriedByAnim = false
 var following = false
 
 func _ready():
 	timerToDestroy()
-	$HomingArea.connect("area_shape_entered",addToHomingList)
-	$HomingArea.connect("area_shape_exited",removeFromHomingList)
-	$HomingArea/CollisionShape2D.shape.radius = homingArea
-	$HomingArea/CollisionShape2D.position.x = homingArea
+	if isHoming:
+		$HomingArea.connect("area_shape_entered",addToHomingList)
+		$HomingArea.connect("area_shape_exited",removeFromHomingList)
+		$HomingArea/CollisionShape2D.shape.radius = homingArea
+		$HomingArea/CollisionShape2D.position.x = homingArea
 
 var monsterToFollow : Monster
 func follow(): #For homing bullets
@@ -27,7 +31,7 @@ func follow(): #For homing bullets
 	follow()
 
 func _physics_process(delta): #unikalne dla każdego pocisku
-		velocity = Vector2(currentWand.spellSigil.spellSigilStats.speed,0).rotated(rotation)
+		velocity = Vector2(speed,0).rotated(rotation)
 		if monsterToFollow:
 			var r = rotation_degrees
 			look_at(monsterToFollow.global_position)
@@ -38,7 +42,10 @@ func _physics_process(delta): #unikalne dla każdego pocisku
 
 func timerToDestroy():
 	await get_tree().create_timer(currentWand.spellSigil.spellSigilStats.range).timeout
-	queue_free()
+	if !isDestoriedByAnim:
+		queue_free()
+	else:
+		$AnimationPlayer.play("deathAnimation")
 
 func _on_area_2d_area_entered(area):
 	var monster = area.get_parent()
