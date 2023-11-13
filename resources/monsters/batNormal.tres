@@ -9,3 +9,4 @@ hp = 20
 damage = 10
 coinsMin = 1
 coinsMax = 4
+experienceRank = 2

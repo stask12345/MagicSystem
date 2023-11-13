@@ -22,11 +22,11 @@ func setCameraBorders():
 
 func generateGrassland():
 	if mapSize == mapSizeEnum.small:
-		setMapSize(Vector2(18,15))
+		setMapSize(Vector2(20,18))
 	if mapSize == mapSizeEnum.normal:
-		setMapSize(Vector2(20,20))
+		setMapSize(Vector2(22,22))
 	if mapSize == mapSizeEnum.big:
-		setMapSize(Vector2(25,25))
+		setMapSize(Vector2(27,27))
 	setUpMap() #calculate availble tiles
 	setCameraBorders()
 	
@@ -36,6 +36,7 @@ func generateGrassland():
 	var numberOfTreePaterns = 0
 	var numberOfDecoration = 0
 	var numberOfChest = 0
+	var numberOfTraps = 0
 	if mapSize == mapSizeEnum.small:
 		numberOfGrassPatches = 4 + randi()%4
 		numberOfWaterPonds = 1 + randi()%2
@@ -43,6 +44,7 @@ func generateGrassland():
 		numberOfTreePaterns = 1 + randi()%2
 		numberOfDecoration = 10 + randi()%8
 		numberOfChest = 1 + randi()%3
+		numberOfTraps = 0 + randi()%2
 	if mapSize == mapSizeEnum.normal: #generating varius sets of grass
 		numberOfGrassPatches = 8 + randi()%4
 		numberOfWaterPonds = 2 + randi()%3
@@ -50,6 +52,7 @@ func generateGrassland():
 		numberOfTreePaterns = 2 + randi()%3
 		numberOfDecoration = 15 + randi()%10
 		numberOfChest = 2 + randi()%3
+		numberOfTraps = 1 + randi()%2
 	if mapSize == mapSizeEnum.big:
 		numberOfGrassPatches = 10 + randi()%4
 		numberOfWaterPonds = 3 + randi()%3
@@ -57,6 +60,7 @@ func generateGrassland():
 		numberOfTreePaterns = 3 + randi()%3
 		numberOfDecoration = 18 + randi()%12
 		numberOfChest = 2 + randi()%3
+		numberOfTraps = 1 + randi()%3
 	
 	generateSpawnPoint()
 	for i in numberOfGrassPatches:
@@ -64,6 +68,7 @@ func generateGrassland():
 	for i in numberOfWaterPonds:
 		generateWaterPattern()
 	generateChests(numberOfChest)
+	generateTraps(numberOfTraps)
 	
 	for w in tileMaxWidth: #generating grass
 		for l in tileMaxHeight:
@@ -83,7 +88,7 @@ func generateGrassland():
 	generateTrees(numberOfTrees,numberOfTreePaterns)
 	
 	generateDecoration(numberOfDecoration)
-	setUpNavigation()
+	setUpNavigation(mapSize)
 
 func getChance(propability): #return true or false #propability 10 - 1 true 9 false
 	if randi()%propability == 0:

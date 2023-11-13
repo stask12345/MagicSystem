@@ -10,7 +10,7 @@ var knockback : Vector2 = Vector2(0,0)
 
 func _ready():
 	var shaders = preload("res://objects/ShaderPreload.tscn").instantiate() #preloading shaders
-	add_child(shaders)
+	get_parent().call_deferred("add_child",shaders)
 
 func _physics_process(delta):
 	var motion = joystick.get_value()
@@ -65,8 +65,8 @@ func makeDust(): #running effect
 
 func slowlyFall(): #for animation purposes when player spawn
 	visible = true
-	%Camera.position_smoothing_enabled = true
-	%Camera.limit_smoothed = true
+#	%Camera.position_smoothing_enabled = true
+#	%Camera.limit_smoothed = true
 	$AnimationPlayer.play("spawnPlayer")
 	var t = get_tree().create_tween()
 	t.set_ease(Tween.EASE_OUT)

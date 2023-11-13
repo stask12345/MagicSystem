@@ -10,7 +10,7 @@ func _ready():
 	totalHp = resources.playerData.totalHp
 	hp = resources.playerData.totalHp
 
-func getDamage(damage : int, hitPoint):
+func getDamage(damage : int, hitPoint, knockPower = 5, knockTime = 0.1):
 	hp -= damage
 	
 	$"../DamageParticles".emitting = true
@@ -20,7 +20,7 @@ func getDamage(damage : int, hitPoint):
 	t.tween_property(self,"self_modulate",Color(5,5,5),0.1)
 	t.tween_property(self,"self_modulate",Color(1,1,1),0.1)
 	%Camera.shake(8,8)
-	knock(hitPoint, 5)
+	knock(hitPoint, knockPower, knockTime)
 	
 	heartsMenu.updateHearts()
 	$"../CharacterBody/CollisionShape2D".set_deferred("disabled",true)

@@ -48,7 +48,7 @@ func followPlayer(): #updates player position
 func shoot():
 	var b : BulletMonster = bullet.instantiate()
 	$ParticlesShoot.emitting = true
-	b.monster = self
+	b.damage = stats.damage
 	get_parent().add_child(b)
 	b.global_position = global_position
 	b.look_at(player.global_position)

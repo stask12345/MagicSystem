@@ -18,3 +18,4 @@ damage = 10
 slimeStats = SubResource("Resource_0kq1j")
 coinsMin = 1
 coinsMax = 2
+experienceRank = 1

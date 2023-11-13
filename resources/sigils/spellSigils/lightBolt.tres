@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://b34tu1ed13dt5"]
+
+[ext_resource type="Script" path="res://scripts/Sigil.gd" id="1_430ux"]
+[ext_resource type="PackedScene" uid="uid://dn4gho7ok0cud" path="res://objects/bullets/LightningBullet.tscn" id="2_00fgr"]
+[ext_resource type="Script" path="res://scripts/SpellSigilStats.gd" id="3_d12mb"]
+
+[sub_resource type="Resource" id="Resource_32npf"]
+script = ExtResource("3_d12mb")
+reloadTime = 1.0
+bulletType = ExtResource("2_00fgr")
+speed = 1600
+range = 0.3
+
+[resource]
+script = ExtResource("1_430ux")
+isSpellSigil = true
+spellSigilStats = SubResource("Resource_32npf")
+nameSigil = "Lighting bolt."
+description = "Weak electronik discharge."
+rank = 0
+rare = false

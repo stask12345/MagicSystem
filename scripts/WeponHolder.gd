@@ -13,7 +13,7 @@ func changeWand():
 	$Wand.texture = currentWand.textureWand
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	rotation_degrees = joystickAttack.get_value_rotation()
 	if joystickAttack.get_value() && canShoot:
 		if get_child_count() > 0:

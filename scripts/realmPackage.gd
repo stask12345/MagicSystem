@@ -16,10 +16,10 @@ func makeMonsterList(mapProgress, mapSize): #returns list of monster in realm / 
 		numberOfMonsters += (randi()%(3*(mapSize+1)))
 	else:
 		if mapProgress >= 30 and mapProgress < 70:
-			numberOfMonsters + (randi()%(5*(mapSize+1)))
+			numberOfMonsters += numberOfMonsters + (randi()%(5*(mapSize+1)))
 		else:
 			if mapProgress >= 70:
-				numberOfMonsters + (randi()%(8*(mapSize+1)))
+				numberOfMonsters += numberOfMonsters + (randi()%(8*(mapSize+1)))
 	
 	var monsterTiers = [] #monster tiers
 	if mapProgress < 15:

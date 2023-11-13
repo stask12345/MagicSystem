@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=63 format=3 uid="uid://ddi1i8uf8jvas"]
+[gd_resource type="TileSet" load_steps=64 format=3 uid="uid://ddi1i8uf8jvas"]
 
 [ext_resource type="Texture2D" uid="uid://by6fx5r51noyc" path="res://graphics/tiles/tile_forest_ground.png" id="1_nisdp"]
 [ext_resource type="PackedScene" uid="uid://1elmybe4fknh" path="res://objects/elements/ChestWooden.tscn" id="2_lkuce"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://8breg75l8aib" path="res://graphics/tiles/tile_forest_ground2.png" id="7_xl0qm"]
 [ext_resource type="PackedScene" uid="uid://ciov4k2j5kt6e" path="res://objects/elements/Tree.tscn" id="8_circm"]
 [ext_resource type="PackedScene" uid="uid://dtawffoqxv01c" path="res://objects/utility/Spawn.tscn" id="9_fr7tm"]
+[ext_resource type="PackedScene" uid="uid://bp513dtffnhj8" path="res://objects/elements/BearTrap.tscn" id="10_gby1h"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5jad6"]
 tile_data = PackedInt32Array(131072, 1, 3, 196608, 1, 0, 262144, 1, 6, 65537, 1, 3, 131073, 1, 8, 262145, 1, 11, 2, 1, 3, 65538, 1, 8, 262146, 1, 11, 3, 1, 2, 262147, 1, 11, 4, 1, 2, 196612, 1, 9, 262148, 1, 5, 5, 1, 4, 65541, 1, 1, 131077, 1, 1, 196613, 1, 5)
@@ -239,11 +240,12 @@ texture = ExtResource("1_nisdp")
 9:1/0/y_sort_origin = 2
 9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:1/0/physics_layer_0/angular_velocity = 0.0
-9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1.75, 8, 2.125, 6, 5, -5.875, 5.25)
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.375, 1.375, 5.5, 1.75, 6.37931, 3.94828, 5, 5.625, -4.875, 5.5, -6.125, 3.375)
 9:1/1 = 1
 9:1/1/flip_h = true
 9:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:1/1/physics_layer_0/angular_velocity = 0.0
+9:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-4.375, 1.375, 5.5, 1.75, 6.37931, 3.94828, 5, 5.625, -4.875, 5.5, -6.125, 3.375)
 10:1/next_alternative_id = 2
 10:1/0 = 0
 10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -599,6 +601,7 @@ resource_name = "objects"
 scenes/0/scene = ExtResource("9_fr7tm")
 scenes/1/scene = ExtResource("8_circm")
 scenes/2/scene = ExtResource("2_lkuce")
+scenes/3/scene = ExtResource("10_gby1h")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hf545"]
 resource_name = "specialObjects"

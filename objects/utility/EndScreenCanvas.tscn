@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlt44inr6i4en"]
+
+[ext_resource type="Script" path="res://scripts/EndLevel.gd" id="1_vr7mt"]
+[ext_resource type="PackedScene" uid="uid://cde2bwg1chghu" path="res://objects/utility/EndScreen.tscn" id="2_0lyhm"]
+
+[node name="CanvasLayerEndScreen" type="CanvasLayer"]
+script = ExtResource("1_vr7mt")
+
+[node name="CenterTop" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="EndScreen" parent="CenterTop" instance=ExtResource("2_0lyhm")]
+layout_mode = 0
+offset_left = -842.0
+offset_top = -70.0
+offset_right = 830.0
+offset_bottom = 734.0

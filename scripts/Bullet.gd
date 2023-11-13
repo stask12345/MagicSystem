@@ -12,6 +12,7 @@ var following = false
 
 func _ready():
 	timerToDestroy()
+	$Area2D.connect("area_entered",_on_area_2d_area_entered)
 	if isHoming:
 		$HomingArea.connect("area_shape_entered",addToHomingList)
 		$HomingArea.connect("area_shape_exited",removeFromHomingList)
@@ -30,9 +31,9 @@ func follow(): #For homing bullets
 	await get_tree().create_timer(0.5).timeout
 	follow()
 
-func _physics_process(delta): #unikalne dla każdego pocisku
+func _physics_process(_delta): #unikalne dla każdego pocisku
 		velocity = Vector2(speed,0).rotated(rotation)
-		if monsterToFollow:
+		if monsterToFollow and monsterToFollow != null:
 			var r = rotation_degrees
 			look_at(monsterToFollow.global_position)
 			print(global_position.distance_to(monsterToFollow.global_position))
@@ -58,7 +59,7 @@ func _on_area_2d_area_entered(area):
 
 var homingList = []
 func addToHomingList(_area_rid, area, _area_shape_index, _local_shape_index):
-	if area.get_parent() is Monster:
+	if area.get_parent() is Monster and area.get_parent().stats.hp > 0:
 		homingList.push_back(area.get_parent())
 		if !following:
 			following = true

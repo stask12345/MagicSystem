@@ -26,17 +26,22 @@ func reciveDamage(damage, hitPosition):
 	hpBar.updateHealthBar(stats.hp, maxHp)
 	showDamageLabel(damage)
 	reciveDamageAnimation()
-	knock(hitPosition,5)
 	if stats.hp <= 0: #on death
+		hpBar.visible = false
+		$Sprite2D.visible = false
 		system.deleteMonsterFromMap(self)
 		dropCoins()
 		$MonsterBody/CollisionShape2D.set_deferred("disabled",true) 
 		alive = false
 		colorTween.kill()
 		$AnimationPlayer.play("death")
+	else:
+		knock(hitPosition,5)
 
 var colorTween
 func reciveDamageAnimation():
+	changeColor(Color.ALICE_BLUE,1)
+	
 	var t = get_tree().create_tween()
 	colorTween = t
 	t.set_trans(Tween.TRANS_CUBIC)
@@ -125,3 +130,11 @@ func dropCoins():
 		get_parent().add_child(c)
 		c.global_position = global_position
 		c.animateCoin()
+
+func changeColor(color, time):
+	var shader : Shader = load("res://resources/animation/changeColor.gdshader")
+	$Sprite2D.material = ShaderMaterial.new()
+	$Sprite2D.material.shader = shader
+	$Sprite2D.material.set_shader_parameter("color",color)
+	await get_tree().create_timer(1).timeout
+	$Sprite2D.material = null

@@ -1,0 +1,126 @@
+[gd_scene load_steps=14 format=3 uid="uid://dn4gho7ok0cud"]
+
+[ext_resource type="Script" path="res://scripts/LightningBullet.gd" id="1_fcyj7"]
+[ext_resource type="Shader" path="res://resources/animation/distortion.gdshader" id="2_kc81u"]
+[ext_resource type="Texture2D" uid="uid://c15jxp3ovw7t3" path="res://graphics/bullets/lighting.png" id="3_vd4q6"]
+[ext_resource type="Texture2D" uid="uid://eo72wh3ko1j0" path="res://graphics/animation/Line.png" id="4_06xeh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxnxk"]
+shader = ExtResource("2_kc81u")
+shader_parameter/amplitude = 0.025
+shader_parameter/frequency = 15.0
+shader_parameter/time_scale = 5.0
+
+[sub_resource type="Curve" id="Curve_bh7nr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_64ggu"]
+colors = PackedColorArray(0.963598, 0.909939, 0, 1, 1, 1, 0.882353, 1)
+
+[sub_resource type="Curve" id="Curve_gwywa"]
+_data = [Vector2(0.0337553, 1), 0.0, 0.0, 0, 0, Vector2(0.772152, 0.736842), 0.0, 0.0, 0, 0, Vector2(1, 0.252632), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_u82hu"]
+colors = PackedColorArray(0.766728, 0.75792, 0.128988, 1, 0.87451, 0.909804, 0.235294, 0.592157)
+
+[sub_resource type="Gradient" id="Gradient_8j3yg"]
+colors = PackedColorArray(0.886275, 0.823529, 0.0313726, 1, 0.806544, 0.810999, 0.105428, 0.203922)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52afw"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oac13"]
+size = Vector2(27, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikl8d"]
+radius = 50.0
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_fcyj7")
+homingSpeed = 0.4
+isHoming = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cxnxk")
+texture = ExtResource("3_vd4q6")
+
+[node name="White" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(3, 3, 3, 0.29)
+position = Vector2(-2.04284, -8.20445e-07)
+rotation = 1.5708
+scale = Vector2(3.31982, 4.29734)
+texture = ExtResource("4_06xeh")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 6
+lifetime = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(15, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_bh7nr")
+color = Color(0.937255, 0.921569, 0, 1)
+color_ramp = SubResource("Gradient_64ggu")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(-10.8, 0.2)
+amount = 5
+lifetime = 2.0
+direction = Vector2(-1, 0)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 8.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_gwywa")
+color = Color(0.917647, 0.964706, 0, 1)
+color_ramp = SubResource("Gradient_u82hu")
+
+[node name="ParticlesDeath" type="CPUParticles2D" parent="."]
+position = Vector2(5, 0)
+emitting = false
+amount = 12
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.84
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 5.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_8j3yg")
+
+[node name="HomingArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomingArea"]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_52afw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_oac13")
+
+[node name="Range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_ikl8d")
+
+[node name="DestroyTimer" type="Timer" parent="."]

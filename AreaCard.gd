@@ -8,23 +8,25 @@ extends Sprite2D
 @onready var progressBar = get_node("/root/MainScene/Menu/CanvasLayer/Center/ProgressBar/Progress")
 
 func _ready():
-	if mapId != -1:
-		progress = get_node("/root/MainScene/Resources").getMapProgess(mapId)
-		progressBar.scale.x = (progress/maxProgress)
 	$TouchScreenButton.connect("pressed",enterArea)
+
+func updateMapProgress():
+	progress = get_node("/root/MainScene/Resources").getMapProgess(mapId)
+	progressBar.scale.x = (float)(float(progress)/float(maxProgress))
 
 var gameWorld = preload("res://Game.tscn")
 func enterArea():
-	playAnimation()
-	await get_tree().create_timer(0.3).timeout
-	
-	var game = gameWorld.instantiate()
-	get_node("/root/MainScene").add_child(game)
-	
-	if mapId != -1:
-		call_deferred("generateRealm")
-	
-	Menu.queue_free()
+	if mapId == $"../../..".currentAreaIndex and !$"../../..".equipmentOpen:
+		playAnimation()
+		await get_tree().create_timer(0.3).timeout
+		
+		var game = gameWorld.instantiate()
+		get_node("/root/MainScene").add_child(game)
+		
+		if mapId != -1:
+			call_deferred("generateRealm")
+		
+		Menu.queue_free()
 
 func playAnimation():
 	

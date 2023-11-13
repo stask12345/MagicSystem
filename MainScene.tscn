@@ -10,6 +10,9 @@
 script = ExtResource("4_m0e4u")
 totalHp = 90
 gold = 0
+exp = 0
+rank = 1
+crystals = 0
 
 [sub_resource type="Resource" id="Resource_c1cwl"]
 script = ExtResource("3_538gw")

@@ -22,7 +22,8 @@ var tiles : Dictionary = {
 enum objects {
 	spawn = 0,
 	tree = 1,
-	chest = 2
+	chest = 2,
+	trap = 3
 }
 
 enum palettes {
@@ -66,7 +67,7 @@ var decorations = [ # z is alternative tile, 1 set, 0 unset
 func generateWaterPattern():
 	var waterPattern = waterPatterns.pick_random()
 	var pos = Vector2i(-((tile_set.get_pattern(waterPattern[0]).get_size().x)/2) + randi()%(tileMaxWidth+(tile_set.get_pattern(waterPattern[0]).get_size().x)/2),-((tile_set.get_pattern(waterPattern[0]).get_size().y)/2) + randi()%tileMaxHeight + (tile_set.get_pattern(waterPattern[0]).get_size().y)/2)
-#	var pos = Vector2i(-2,19)
+#	var pos = Vector2i(-2,18)
 	
 	if checkIfOccupied(pos,tile_set.get_pattern(waterPattern[0]).get_size()):
 		print("Unabled to set water pond!")
@@ -87,6 +88,8 @@ func generateWaterPattern():
 	
 	usedTiles.append_array(ut)
 	usedTiles.append_array(ut1)
+	for u in usedTiles:
+		availableTiles.erase(u)
 	print(ut)
 
 func generateGrassPattern(pos : Vector2i):
@@ -176,6 +179,15 @@ func generateChests(numberOfChests):
 		availableTiles.erase(tile)
 		usedTiles.append(tile)
 
+func generateTraps(numberOfTraps):
+	for i in numberOfTraps:
+		var tile = availableTiles.pick_random()
+		
+		set_cell(layers.objects,tile,palettes.objects,Vector2i(0,0),objects.trap)
+		
+		availableTiles.erase(tile)
+		usedTiles.append(tile)
+
 func generateSpawnPoint():
 	var x = 3 + randi()%(tileMaxWidth-8)
 	var y = 3 + randi()%(tileMaxHeight-8)
@@ -194,7 +206,7 @@ func generateSpawnPoint():
 	%Player.global_position = Vector2(pos.x * 5 * 16 + 77,pos.y * 5 * 16 + 40)
 	get_node("/root/MainScene/Game/CanvasLayer").process_mode = Node.PROCESS_MODE_DISABLED
 
-func setUpNavigation():
+func setUpNavigation(mapsize):
 	var allBackgroundTiles = get_used_cells(layers.background) #adding water tiles(with navigation) to backgroundTiles
 	var waterLayerPolygons = []
 	var backgroundTiles = []
@@ -263,7 +275,6 @@ func setUpNavigation():
 	
 	waterLayerPolygons.append_array(polygons)
 	
-	print("map boundary early")
 	
 	var mapWidth = getCellPosition(Vector2i(tileMaxWidth,0)).x
 	var mapHeight = getCellPosition(Vector2i(0,tileMaxHeight)).y
@@ -301,7 +312,7 @@ func setUpNavigation():
 							leftBottom = point.y
 					if point.y > 0 and point.y < mapHeight and previousPoint != null and (previousPoint.x * point.x < 0 or nextPoint.x * point.x < 0):
 						intersectionPoints.append(Vector2(0,point.y)) #test
-					newPolygon.erase(point)
+#					newPolygon.erase(point)
 				if point.x > mapWidth:
 					if point.y < rightTop:
 						if previousPoint != null and previousPoint.x < mapWidth:
@@ -311,7 +322,7 @@ func setUpNavigation():
 							rightBottom = point.y
 					if point.y > 0 and point.y < mapHeight and previousPoint != null and (previousPoint.x < mapWidth or nextPoint.x < mapWidth):
 						intersectionPoints.append(Vector2(mapWidth,point.y)) #test
-					newPolygon.erase(point)
+#					newPolygon.erase(point)
 				if point.y < 0:
 					if point.x < topLeft:
 						if previousPoint == null: #?????!!!! previousPoint != null and previousPoint.y > 0 I don't know if this will broke smt but order starts from upper right corner so, I temporarly put it like this
@@ -321,7 +332,7 @@ func setUpNavigation():
 							topRight = point.x
 					if point.x > 0 and point.x < mapWidth and previousPoint != null and (previousPoint.y * point.y < 0 or nextPoint.y * point.y < 0):
 						intersectionPoints.append(Vector2(point.x,0)) #test
-					newPolygon.erase(point)
+#					newPolygon.erase(point)
 				if point.y > mapHeight:
 					if point.x < bottomLeft:
 						if nextPoint.y < mapHeight:
@@ -331,7 +342,7 @@ func setUpNavigation():
 							bottomRight = point.x
 					if point.y > 0 and point.y < mapHeight and previousPoint != null and (previousPoint.y < mapHeight or nextPoint.y < mapHeight):
 						intersectionPoints.append(Vector2(point.x,mapHeight)) #test
-					newPolygon.erase(point)
+#					newPolygon.erase(point)
 				previousPoint = point
 			
 			print(intersectionPoints)
@@ -436,7 +447,8 @@ func setUpNavigation():
 					print("error")
 					return
 				
-				print("border 2")
+				if mapsize == mapSizeEnum.normal:
+					print("border 2")
 				
 				
 				if startPoint[0] != p[0]:

@@ -1,91 +1,33 @@
-[gd_scene load_steps=27 format=3 uid="uid://e774nl207ewg"]
+[gd_scene load_steps=61 format=3 uid="uid://e774nl207ewg"]
 
 [ext_resource type="Script" path="res://scrollMenu.gd" id="1_4el7j"]
-[ext_resource type="Texture2D" uid="uid://bmcwlf3tl1h6t" path="res://graphics/white.png" id="1_hpbm6"]
-[ext_resource type="Texture2D" uid="uid://bkbgxm55b0dgr" path="res://graphics/UI/shopArea.png" id="2_0kimu"]
 [ext_resource type="Texture2D" uid="uid://sys7sqqjkg58" path="res://graphics/UI/forestArea.png" id="2_dvmrb"]
 [ext_resource type="Texture2D" uid="uid://xji6qrutb52k" path="res://graphics/UI/forestAreaDecoration.png" id="3_lvoj5"]
 [ext_resource type="FontFile" uid="uid://88njqog5s3vx" path="res://dpcomic.ttf" id="4_la6un"]
-[ext_resource type="Texture2D" uid="uid://dwkijqkusdwnm" path="res://graphics/UI/shopAreaLampDecoration1.png" id="4_qw77w"]
 [ext_resource type="Texture2D" uid="uid://clgto34kyb6lj" path="res://graphics/UI/forestAreaGlow.png" id="5_bgf35"]
-[ext_resource type="Texture2D" uid="uid://ciy7bn3u34f2n" path="res://graphics/UI/shopAreaLampDecoration.png" id="6_pqkkj"]
 [ext_resource type="Texture2D" uid="uid://bq5q4a2q1x35f" path="res://graphics/UI/progressBar1.png" id="7_a2q8c"]
 [ext_resource type="Texture2D" uid="uid://d01ln8ym1c4p" path="res://graphics/UI/progressBar2.png" id="8_gjec1"]
 [ext_resource type="Texture2D" uid="uid://b10dfrafry0mp" path="res://graphics/UI/progressBar3.png" id="9_6u0tu"]
 [ext_resource type="Script" path="res://AreaCard.gd" id="9_30g63"]
 [ext_resource type="Resource" uid="uid://i0emy6uyahap" path="res://resources/ForestPackage.tres" id="10_ah1y5"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_fp0fm"]
-font = ExtResource("4_la6un")
-font_size = 100
-font_color = Color(0.831373, 0.65098, 0.223529, 1)
-outline_size = 15
-outline_color = Color(0.658824, 0.509804, 0.152941, 1)
-shadow_size = 25
-shadow_color = Color(0, 0, 0, 0.392157)
-shadow_offset = Vector2(2, 3)
-
-[sub_resource type="Animation" id="Animation_56e5n"]
-resource_name = "idle"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShopAreaLampDecoration:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0523599, 0.0, 0.0523599, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShopAreaLampDecoration/ShopAreaLampDecoration1:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(2.05, 2.05), Vector2(2, 2)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Glow:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2, 4, 4.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1.2, 1.2, 1.2, 0.08), Color(1.2, 1.2, 1.2, 0.290196), Color(1.2, 1.2, 1.2, 0.08), Color(1.2, 1.2, 1.2, 0.08)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rhni0"]
-_data = {
-"idle": SubResource("Animation_56e5n")
-}
-
-[sub_resource type="Gradient" id="Gradient_ro6pp"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 0.517647, 0.164706, 1, 1, 0.517647, 0.164706, 0.0705882)
+[ext_resource type="Script" path="res://scripts/MenuStats.gd" id="11_cqe5l"]
+[ext_resource type="Texture2D" uid="uid://butjwelq4fjw1" path="res://graphics/UI/arrowUI.png" id="11_obq2u"]
+[ext_resource type="Texture2D" uid="uid://cah76f27ae8v5" path="res://graphics/UI/progressBarMini.png" id="12_kqjlg"]
+[ext_resource type="Texture2D" uid="uid://btfn0bhpg6w4u" path="res://graphics/UI/levelBar.png" id="12_o7leb"]
+[ext_resource type="Texture2D" uid="uid://ctsstk23n10fw" path="res://graphics/UI/rank.png" id="12_pydky"]
+[ext_resource type="Texture2D" uid="uid://dbjdms602nsj7" path="res://graphics/UI/goldBagBig.png" id="13_elfxk"]
+[ext_resource type="Texture2D" uid="uid://bqka7rwo64x4m" path="res://graphics/UI/crystalsBig.png" id="14_6jo6b"]
+[ext_resource type="Texture2D" uid="uid://dqjupi068l5v2" path="res://graphics/UI/progressBarMini1.png" id="14_mua75"]
+[ext_resource type="Script" path="res://Equipment.gd" id="18_ng4i1"]
+[ext_resource type="Texture2D" uid="uid://b40pd2r5vedpc" path="res://graphics/UI/shopWand.png" id="19_mm7n3"]
+[ext_resource type="Texture2D" uid="uid://b3clvhylghi3g" path="res://graphics/UI/shopDecoration.png" id="20_bh1sf"]
+[ext_resource type="Texture2D" uid="uid://cc50pdyl5ba1m" path="res://graphics/UI/shopArmor.png" id="20_bt7df"]
+[ext_resource type="Texture2D" uid="uid://yljspda6ci11" path="res://graphics/UI/shopAnvil.png" id="21_dv0jp"]
+[ext_resource type="Texture2D" uid="uid://b6jjvjwtu78pw" path="res://graphics/UI/uiDecoration.png" id="24_efj4b"]
+[ext_resource type="Texture2D" uid="uid://djatt25utyfls" path="res://graphics/items/wand2.png" id="25_0e6ct"]
+[ext_resource type="Texture2D" uid="uid://cyehbodpqjrev" path="res://graphics/sigils/sigil9.png" id="26_37oym"]
+[ext_resource type="Texture2D" uid="uid://nnh0igwdve0u" path="res://graphics/items/wand1.png" id="27_nin02"]
+[ext_resource type="Texture2D" uid="uid://bd8jke7jjamu" path="res://graphics/UI/star.png" id="28_ailku"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w05ix"]
 font = ExtResource("4_la6un")
@@ -172,6 +114,224 @@ _data = {
 "idle": SubResource("Animation_aw5p7")
 }
 
+[sub_resource type="Animation" id="Animation_uab78"]
+resource_name = "idel"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.2, 2.2), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.470588)]
+}
+
+[sub_resource type="Animation" id="Animation_8wiyx"]
+resource_name = "idel"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 2), Vector2(-2.2, 2.2), Vector2(-2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.470588)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkde8"]
+_data = {
+"idel": SubResource("Animation_uab78"),
+"idel (2)": SubResource("Animation_8wiyx")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_al8m3"]
+font = ExtResource("4_la6un")
+font_size = 31
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1cp4a"]
+font = ExtResource("4_la6un")
+font_size = 64
+font_color = Color(0.709804, 0.521569, 1, 1)
+outline_size = 16
+outline_color = Color(0.537379, 0.00372609, 0.93244, 1)
+shadow_size = 4
+shadow_color = Color(0.705882, 0.517647, 0.996078, 0.490196)
+shadow_offset = Vector2(3.39, 2.57)
+
+[sub_resource type="Animation" id="Animation_4pn0c"]
+resource_name = "idle"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment/Return:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-318, -49), Vector2(-318, -49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment/Return:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7txl"]
+_data = {
+"idle": SubResource("Animation_4pn0c")
+}
+
+[sub_resource type="Gradient" id="Gradient_qd0xc"]
+offsets = PackedFloat32Array(0, 0.972477)
+colors = PackedColorArray(0.707031, 0.519531, 0.996094, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p2o83"]
+gradient = SubResource("Gradient_qd0xc")
+fill = 1
+fill_from = Vector2(0.534884, 0.517442)
+fill_to = Vector2(0.110465, 0.889535)
+
+[sub_resource type="Gradient" id="Gradient_ahma2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.00917431, 1)
+colors = PackedColorArray(0, 0.85098, 1, 1, 0, 0.392157, 0.458824, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ih1x"]
+gradient = SubResource("Gradient_ahma2")
+fill = 1
+fill_from = Vector2(0.505814, 0.511628)
+fill_to = Vector2(0.848837, 0.197674)
+
+[sub_resource type="Gradient" id="Gradient_34lf0"]
+offsets = PackedFloat32Array(0, 0.495413, 1)
+colors = PackedColorArray(0, 0.334051, 0, 1, 0, 0.0686092, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c551x"]
+gradient = SubResource("Gradient_34lf0")
+fill = 1
+fill_from = Vector2(0.494186, 0.494186)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_5hej2"]
+offsets = PackedFloat32Array(0, 0.972477)
+colors = PackedColorArray(0.835938, 0.519531, 0.210938, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ffa3l"]
+gradient = SubResource("Gradient_5hej2")
+fill = 1
+fill_from = Vector2(0.534884, 0.517442)
+fill_to = Vector2(0.145349, 0.866279)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gmg7y"]
+font = ExtResource("4_la6un")
+font_size = 61
+font_color = Color(0.839844, 0.523438, 0.210938, 1)
+outline_size = 16
+outline_color = Color(0.556863, 0.333333, 0.101961, 1)
+shadow_size = 4
+shadow_color = Color(0.705882, 0.517647, 0.996078, 0.490196)
+shadow_offset = Vector2(3.39, 2.57)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xa2lk"]
+font = ExtResource("4_la6un")
+font_size = 61
+font_color = Color(0.92549, 0.764706, 0, 1)
+outline_size = 16
+outline_color = Color(0.776471, 0.643137, 0, 1)
+shadow_size = 4
+shadow_color = Color(0.705882, 0.517647, 0.996078, 0.490196)
+shadow_offset = Vector2(3.39, 2.57)
+
+[sub_resource type="Gradient" id="Gradient_vbyrc"]
+offsets = PackedFloat32Array(0, 0.972477)
+colors = PackedColorArray(0.921875, 0.761719, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aso2e"]
+gradient = SubResource("Gradient_vbyrc")
+fill = 1
+fill_from = Vector2(0.534884, 0.517442)
+fill_to = Vector2(0.139535, 0.866279)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tds7c"]
+font = ExtResource("4_la6un")
+font_size = 61
+font_color = Color(0.300781, 0.894531, 0.976563, 1)
+outline_size = 16
+outline_color = Color(0.0901961, 0.619608, 0.682353, 1)
+shadow_size = 4
+shadow_color = Color(0.705882, 0.517647, 0.996078, 0.490196)
+shadow_offset = Vector2(3.39, 2.57)
+
+[sub_resource type="Gradient" id="Gradient_yl46v"]
+offsets = PackedFloat32Array(0, 0.972477)
+colors = PackedColorArray(0.300781, 0.890625, 0.972656, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v5csg"]
+gradient = SubResource("Gradient_yl46v")
+fill = 1
+fill_from = Vector2(0.534884, 0.517442)
+fill_to = Vector2(0.139535, 0.866279)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y18n"]
+font = ExtResource("4_la6un")
+font_size = 64
+font_color = Color(0.709804, 0.521569, 1, 1)
+outline_size = 16
+outline_color = Color(0.537379, 0.00372609, 0.93244, 1)
+shadow_size = 4
+shadow_color = Color(0.705882, 0.517647, 0.996078, 0.490196)
+shadow_offset = Vector2(3.39, 2.57)
+
+[sub_resource type="LabelSettings" id="LabelSettings_otmr3"]
+font = ExtResource("4_la6un")
+font_size = 40
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -195,82 +355,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Market" type="Control" parent="CanvasLayer/Container"]
-modulate = Color(0.196078, 0.196078, 0.196078, 1)
-layout_mode = 2
-anchors_preset = 0
-offset_left = -700.0
-offset_top = -25.0
-offset_right = -700.0
-offset_bottom = -25.0
-rotation = 0.0872665
-size_flags_vertical = 4
-
-[node name="White" type="Sprite2D" parent="CanvasLayer/Container/Market"]
-position = Vector2(0, -25)
-scale = Vector2(2, 2)
-texture = ExtResource("2_0kimu")
-script = ExtResource("9_30g63")
-mapId = -1
-
-[node name="ForestAreaDecoration" type="Sprite2D" parent="CanvasLayer/Container/Market/White"]
-position = Vector2(1.33334, 5.33334)
-scale = Vector2(0.98, 0.98)
-texture = ExtResource("3_lvoj5")
-
-[node name="Label" type="Label" parent="CanvasLayer/Container/Market/White"]
-offset_left = -88.0
-offset_top = -114.0
-offset_right = 509.0
-offset_bottom = -20.0
-scale = Vector2(0.3, 0.3)
-text = "Magic Shop"
-label_settings = SubResource("LabelSettings_fp0fm")
-horizontal_alignment = 1
-
-[node name="ShopAreaLampDecoration" type="Sprite2D" parent="CanvasLayer/Container/Market/White"]
-z_index = 1
-position = Vector2(-7.8089, -86.6034)
-texture = ExtResource("6_pqkkj")
-offset = Vector2(-0.994286, 38.6405)
-
-[node name="ShopAreaLampDecoration1" type="Sprite2D" parent="CanvasLayer/Container/Market/White/ShopAreaLampDecoration"]
-z_index = -1
-position = Vector2(0.786308, 47.5191)
-texture = ExtResource("4_qw77w")
-
-[node name="Glow" type="Sprite2D" parent="CanvasLayer/Container/Market/White"]
-self_modulate = Color(1.2, 1.2, 1.2, 0.08)
-z_index = -2
-position = Vector2(-0.5, 1.52588e-05)
-texture = ExtResource("5_bgf35")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Container/Market/White"]
-autoplay = "idle"
-libraries = {
-"": SubResource("AnimationLibrary_rhni0")
-}
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer/Container/Market/White"]
-position = Vector2(-7.62658, -34.5142)
-amount = 3
-lifetime = 2.5
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 15.0
-scale_amount_min = 2.5
-scale_amount_max = 3.5
-color = Color(1, 0.517647, 0.164706, 1)
-color_ramp = SubResource("Gradient_ro6pp")
-
-[node name="TouchScreenButton" type="Button" parent="CanvasLayer/Container/Market/White"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -124.5
-offset_top = -99.5
-offset_right = 372.5
-offset_bottom = 302.5
 
 [node name="Forest" type="Control" parent="CanvasLayer/Container"]
 layout_mode = 2
@@ -331,6 +415,7 @@ libraries = {
 }
 
 [node name="ForestAreaGlow" type="Sprite2D" parent="CanvasLayer/Container/Forest/White"]
+visible = false
 self_modulate = Color(1.2, 1.2, 1.2, 0.08)
 z_index = -2
 position = Vector2(-0.5, 0)
@@ -360,6 +445,8 @@ size_flags_vertical = 4
 position = Vector2(0, -25)
 scale = Vector2(2, 2)
 texture = ExtResource("2_dvmrb")
+script = ExtResource("9_30g63")
+mapId = 1
 
 [node name="ForestAreaDecoration" type="Sprite2D" parent="CanvasLayer/Container/Forest3/White"]
 position = Vector2(1.33334, 5.33334)
@@ -413,6 +500,13 @@ position = Vector2(-0.5, 0)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("5_bgf35")
 
+[node name="TouchScreenButton" type="Button" parent="CanvasLayer/Container/Forest3/White"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -128.0
+offset_top = -104.0
+offset_right = 126.0
+offset_bottom = 103.0
+
 [node name="Center" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 8
@@ -433,11 +527,11 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_a2q8c")
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer/Center/ProgressBar"]
-modulate = Color(0.643137, 0.643137, 0.643137, 1)
+modulate = Color(0.619608, 0.6, 0.631373, 0.882353)
 texture = ExtResource("8_gjec1")
 
 [node name="Progress" type="Sprite2D" parent="CanvasLayer/Center/ProgressBar"]
-position = Vector2(-81.5, 0)
+position = Vector2(-83, 0)
 texture = ExtResource("9_6u0tu")
 offset = Vector2(82.8333, 0)
 region_rect = Rect2(-325, -116, 41, 46)
@@ -459,13 +553,523 @@ libraries = {
 "": SubResource("AnimationLibrary_fjsl6")
 }
 
+[node name="ArrowUiRight" type="Sprite2D" parent="CanvasLayer/Center"]
+self_modulate = Color(1, 1, 1, 0.5)
+position = Vector2(333, 4)
+scale = Vector2(2.05, 2.05)
+texture = ExtResource("11_obq2u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Center/ArrowUiRight"]
+autoplay = "idel"
+libraries = {
+"": SubResource("AnimationLibrary_bkde8")
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Center/ArrowUiRight"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-19, -49.5)
+scale = Vector2(0.324324, 4.675)
+texture_normal = ExtResource("12_o7leb")
+
+[node name="ArrowUiLeft" type="Sprite2D" parent="CanvasLayer/Center"]
+self_modulate = Color(1, 1, 1, 0.5)
+position = Vector2(-304, 4)
+scale = Vector2(-2.05, 2.05)
+texture = ExtResource("11_obq2u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Center/ArrowUiLeft"]
+autoplay = "idel (2)"
+libraries = {
+"": SubResource("AnimationLibrary_bkde8")
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Center/ArrowUiLeft"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-19, -49.5)
+scale = Vector2(0.324324, 4.675)
+texture_normal = ExtResource("12_o7leb")
+
+[node name="Stats" type="Control" parent="CanvasLayer"]
+z_index = 20
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("11_cqe5l")
+
+[node name="Rank" type="Label" parent="CanvasLayer/Stats"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 2.0
+offset_right = 135.0
+offset_bottom = 33.0
+text = "Rank 1"
+label_settings = SubResource("LabelSettings_al8m3")
+
+[node name="RankImage" type="Sprite2D" parent="CanvasLayer/Stats/Rank"]
+position = Vector2(-24, 9)
+scale = Vector2(2, 2)
+texture = ExtResource("12_pydky")
+hframes = 15
+
+[node name="Exp" type="Label" parent="CanvasLayer/Stats"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 2.0
+offset_right = 273.0
+offset_bottom = 33.0
+text = "0/100
+"
+label_settings = SubResource("LabelSettings_al8m3")
+horizontal_alignment = 1
+
+[node name="ProgressBarMini" type="Sprite2D" parent="CanvasLayer/Stats/Exp"]
+position = Vector2(37, 13)
+scale = Vector2(2, 2)
+texture = ExtResource("12_kqjlg")
+
+[node name="progress" type="Sprite2D" parent="CanvasLayer/Stats/Exp/ProgressBarMini"]
+modulate = Color(0.435294, 0.909804, 0.921569, 1)
+z_index = -1
+position = Vector2(-44, -1)
+scale = Vector2(0.5, 1)
+texture = ExtResource("14_mua75")
+offset = Vector2(44, 0.5)
+
+[node name="background" type="Sprite2D" parent="CanvasLayer/Stats/Exp/ProgressBarMini"]
+self_modulate = Color(0.620714, 0.601384, 0.632344, 0.882353)
+z_index = -2
+position = Vector2(-44, -0.5)
+texture = ExtResource("14_mua75")
+offset = Vector2(44, 0)
+
+[node name="Gold" type="Label" parent="CanvasLayer/Stats"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -56.0
+offset_right = 141.0
+offset_bottom = -25.0
+text = "x 121"
+label_settings = SubResource("LabelSettings_al8m3")
+
+[node name="RankImage" type="Sprite2D" parent="CanvasLayer/Stats/Gold"]
+position = Vector2(-29, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("13_elfxk")
+
+[node name="Crystals" type="Label" parent="CanvasLayer/Stats"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -55.0
+offset_right = 280.0
+offset_bottom = -24.0
+text = "x 4"
+label_settings = SubResource("LabelSettings_al8m3")
+
+[node name="RankImage" type="Sprite2D" parent="CanvasLayer/Stats/Crystals"]
+position = Vector2(-29, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("14_6jo6b")
+
+[node name="Equipment" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Equipment"]
+layout_mode = 0
+offset_left = -318.0
+offset_top = -49.0
+offset_right = -20.0
+offset_bottom = 28.0
+pivot_offset = Vector2(161, 44)
+text = "Equipment "
+label_settings = SubResource("LabelSettings_1cp4a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Equipment/Label"]
+root_node = NodePath("../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_u7txl")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Equipment/Label"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(121, 43)
+scale = Vector2(7.48438, 1.75781)
+texture = SubResource("GradientTexture2D_p2o83")
+
+[node name="Button" type="Button" parent="CanvasLayer/Equipment/Label"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 275.0
+offset_bottom = 74.0
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 10
+position = Vector2(598, 310.5)
+scale = Vector2(34.125, 12.5781)
+texture = SubResource("GradientTexture2D_3ih1x")
+
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-self_modulate = Color(0, 0, 0, 0.611765)
-z_index = -10
-position = Vector2(638, 329.25)
-scale = Vector2(2150, 659.5)
-texture = ExtResource("1_hpbm6")
+self_modulate = Color(1, 1, 1, 0.764706)
+z_index = -100
+position = Vector2(572.5, 265)
+scale = Vector2(33.2969, 15.0313)
+texture = SubResource("GradientTexture2D_c551x")
 
 [node name="DragTimer" type="Timer" parent="CanvasLayer"]
 wait_time = 0.5
 one_shot = true
+
+[node name="Equipment" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("18_ng4i1")
+
+[node name="WandButton" type="NinePatchRect" parent="Equipment"]
+self_modulate = Color(0.843137, 0.52549, 0.211765, 1)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 125.0
+offset_top = -164.0
+offset_right = 303.0
+offset_bottom = 75.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(92, 116)
+texture = ExtResource("20_bh1sf")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 15
+
+[node name="ShopWand" type="Sprite2D" parent="Equipment/WandButton"]
+position = Vector2(89, 106.5)
+scale = Vector2(2, 2)
+texture = ExtResource("19_mm7n3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/WandButton/ShopWand"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -5
+position = Vector2(0.625002, 2.5)
+scale = Vector2(1.095, 1)
+texture = SubResource("GradientTexture2D_ffa3l")
+
+[node name="Label2" type="Label" parent="Equipment/WandButton"]
+layout_mode = 0
+offset_left = -63.0
+offset_top = 126.5
+offset_right = 235.0
+offset_bottom = 203.5
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(161, 44)
+text = "Wands
+"
+label_settings = SubResource("LabelSettings_gmg7y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/WandButton/Label2"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(140, 35.5)
+scale = Vector2(4.0625, 1.51563)
+texture = SubResource("GradientTexture2D_ffa3l")
+
+[node name="Button" type="Button" parent="Equipment/WandButton"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 237.0
+
+[node name="ArmorButton" type="NinePatchRect" parent="Equipment"]
+self_modulate = Color(0.921875, 0.761719, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -161.0
+offset_right = 87.0
+offset_bottom = 77.0002
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(91, 119)
+texture = ExtResource("20_bh1sf")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 15
+
+[node name="Label3" type="Label" parent="Equipment/ArmorButton"]
+layout_mode = 0
+offset_left = -63.5
+offset_top = 127.5
+offset_right = 234.5
+offset_bottom = 204.5
+scale = Vector2(0.55, 0.55)
+pivot_offset = Vector2(161, 44)
+text = "Armor
+"
+label_settings = SubResource("LabelSettings_xa2lk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/ArmorButton/Label3"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(143, 37)
+scale = Vector2(4.21875, 1.8125)
+texture = SubResource("GradientTexture2D_aso2e")
+
+[node name="ShopArmor" type="Sprite2D" parent="Equipment/ArmorButton"]
+position = Vector2(89.5, 117.5)
+scale = Vector2(2, 2)
+texture = ExtResource("20_bt7df")
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/ArmorButton/ShopArmor"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(-0.5, 0.25)
+texture = SubResource("GradientTexture2D_aso2e")
+
+[node name="UpgradesButton" type="NinePatchRect" parent="Equipment"]
+self_modulate = Color(0.301961, 0.898039, 0.980392, 1)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -307.0
+offset_top = -161.0
+offset_right = -129.0
+offset_bottom = 77.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(94.5, 118)
+texture = ExtResource("20_bh1sf")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 15
+
+[node name="Label3" type="Label" parent="Equipment/UpgradesButton"]
+layout_mode = 0
+offset_left = -63.5
+offset_top = 121.0
+offset_right = 234.5
+offset_bottom = 198.0
+scale = Vector2(0.55, 0.55)
+pivot_offset = Vector2(161, 44)
+text = "Upgrades
+"
+label_settings = SubResource("LabelSettings_tds7c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/UpgradesButton/Label3"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(143, 37)
+scale = Vector2(4.21875, 1.8125)
+texture = SubResource("GradientTexture2D_v5csg")
+
+[node name="ShopAnvil" type="Sprite2D" parent="Equipment/UpgradesButton"]
+position = Vector2(95.5, 104.5)
+scale = Vector2(2, 2)
+texture = ExtResource("21_dv0jp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/UpgradesButton/ShopAnvil"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(-2.25, 3.5)
+texture = SubResource("GradientTexture2D_v5csg")
+
+[node name="Return" type="Label" parent="Equipment"]
+z_index = 5
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_top = -95.9999
+offset_right = -78.0
+offset_bottom = -18.9999
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.4, 1.4)
+pivot_offset = Vector2(161, 44)
+text = "Return"
+label_settings = SubResource("LabelSettings_1y18n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Equipment/Return"]
+self_modulate = Color(1, 1, 1, 0.572549)
+z_index = -2
+position = Vector2(143.5, 34.5)
+scale = Vector2(5.32812, 1.76562)
+texture = SubResource("GradientTexture2D_p2o83")
+
+[node name="Button" type="Button" parent="Equipment/Return"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 275.0
+offset_bottom = 74.0
+
+[node name="Wand" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="background" type="ColorRect" parent="Wand"]
+layout_mode = 0
+offset_left = -172.0
+offset_top = -74.0
+offset_right = 1366.0
+offset_bottom = 697.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Wand"]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 1.0
+offset_right = 987.0
+offset_bottom = 41.0
+text = "Backpack"
+label_settings = SubResource("LabelSettings_otmr3")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Wand"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 734.0
+offset_top = 48.0
+offset_right = 920.0
+offset_bottom = 91.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_a2q8c")
+region_rect = Rect2(0.245, 0.02, 164.545, 24.215)
+patch_margin_left = 12
+patch_margin_top = 15
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="ColorRect" type="ColorRect" parent="Wand/NinePatchRect"]
+z_index = -1
+layout_mode = 0
+offset_left = 2.59491
+offset_top = 1.98399
+offset_right = 182.795
+offset_bottom = 41.984
+color = Color(0.733333, 0.733333, 0.733333, 1)
+
+[node name="UpgradesButton" type="NinePatchRect" parent="Wand"]
+self_modulate = Color(0.301961, 0.898039, 0.980392, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 755.0
+offset_top = 138.5
+offset_right = 971.0
+offset_bottom = 194.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(94.5, 118)
+texture = ExtResource("24_efj4b")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 15
+
+[node name="Wand2" type="Sprite2D" parent="Wand/UpgradesButton"]
+position = Vector2(28.3076, 28.5141)
+rotation = -2.27478
+scale = Vector2(2, 2)
+texture = ExtResource("25_0e6ct")
+
+[node name="Label" type="Label" parent="Wand/UpgradesButton"]
+offset_left = 48.2103
+offset_top = 16.3878
+offset_right = 195.21
+offset_bottom = 56.3878
+scale = Vector2(0.6, 0.6)
+text = "12-15"
+label_settings = SubResource("LabelSettings_otmr3")
+
+[node name="Sigil9" type="Sprite2D" parent="Wand/UpgradesButton"]
+position = Vector2(189.064, 28.212)
+scale = Vector2(2, 2)
+texture = ExtResource("26_37oym")
+
+[node name="UpgradesButton2" type="NinePatchRect" parent="Wand"]
+self_modulate = Color(0.301961, 0.898039, 0.980392, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 23.0
+offset_right = 302.0
+offset_bottom = 438.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(94.5, 118)
+texture = ExtResource("24_efj4b")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 15
+
+[node name="Wand1" type="Sprite2D" parent="Wand"]
+position = Vector2(251.854, 318.535)
+rotation = -0.785398
+scale = Vector2(15, 15)
+texture = ExtResource("27_nin02")
+
+[node name="Label2" type="Label" parent="Wand"]
+offset_left = 145.259
+offset_top = 405.247
+offset_right = 292.259
+offset_bottom = 445.247
+scale = Vector2(1.5, 1.5)
+text = "15-21"
+label_settings = SubResource("LabelSettings_otmr3")
+horizontal_alignment = 1
+
+[node name="Star" type="Sprite2D" parent="."]
+position = Vector2(238.108, 167.155)
+scale = Vector2(2, 2)
+texture = ExtResource("28_ailku")
